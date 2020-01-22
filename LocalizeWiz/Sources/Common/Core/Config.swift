@@ -12,5 +12,4 @@ struct Config: Codable {
 
     var apiKey: String
     var projectId: String
-
 }
