@@ -27,14 +27,14 @@ public class Project: Codable {
     public var workspace: Workspace?
     public var languages: [Language]
     public var state: String
-    public var isSetUp: Bool?
+    public var isInitialized: Bool?
 
     private lazy var localizations: StringsCaches = StringsCaches()
 
 //    public var files: [Any]
 
-    func setup() {
-
+    func initialize() {
+        Log.i("Initializing project")
     }
 
     static func readFromCache() -> Project? {

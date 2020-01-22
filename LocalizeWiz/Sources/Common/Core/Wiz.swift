@@ -29,20 +29,30 @@ public class Wiz {
     private var currentLanguageCode = Locale.current.languageCode ?? ""
 
     public func configure(apiKey: String, projectId: String, language: String? = Locale.current.languageCode) {
+        guard !apiKey.isEmpty else {
+            Log.s("Invalid apiKey: \(apiKey)")
+            return
+        }
+        guard !projectId.isEmpty else {
+            Log.s("Invalid projectId: \(projectId)")
+            return
+        }
+
         self.config = Config(apiKey: apiKey, projectId: projectId)
 
         api.getProjectDetailsById(projectId) { (project, error) in
+
             if let project = project {
                 self.project = project
                 if let workspace = project.workspace {
                     self.workspace = workspace
                 }
 
-                if let isSetup = project.isSetUp, !isSetup {
-                    project.setup()
+                if let isInitialized = project.isInitialized, !isInitialized {
+                    project.initialize()
                 }
-            } else {
-                // try to restore project from local cache
+            } else if let error = error {
+                Log.e(error)
             }
 
             self.refresh()

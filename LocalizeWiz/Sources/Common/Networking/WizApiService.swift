@@ -12,8 +12,6 @@ class WizApiService {
 
     private let networkService: NetworkService = NetworkService()
 
-    let sharedInstance: WizApiService = WizApiService()
-
     init() {}
 
     func getProject(_ projectId: String, completion: @escaping(Project?, WizError?) -> Void) {
