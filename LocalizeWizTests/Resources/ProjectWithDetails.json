@@ -1,0 +1,119 @@
+{
+    "id": "3666534157255774",
+    "name": "LocalizeWiz",
+    "description": "My Project",
+    "languageId": "3664376347231233",
+    "platform": "iOS",
+    "userId": "3666383648851035",
+    "workspaceId": "3666394520487004",
+    "created": "2019-10-07T00:27:20.610Z",
+    "language": {
+        "id": "3664376347231233",
+        "englishName": "English",
+        "localName": "English",
+        "isoCode": "en",
+        "flagUrl": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/png100px/us.png",
+        "countryCode": null
+    },
+    "languages": [
+        {
+            "id": "3664376380785674",
+            "projectId": "3666534157255774",
+            "languageId": "3664376380785674",
+            "dateAdded": "2019-10-24T16:26:39.478Z",
+            "isoCode": "zh",
+            "status": "completed",
+            "englishName": "Chinese Simplified ",
+            "localName": "中文",
+            "flagUrl": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/png100px/cn.png",
+            "flagUrl2": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/svg/cn.svg"
+        },
+        {
+            "id": "3664376389174294",
+            "projectId": "3666534157255774",
+            "languageId": "3664376389174294",
+            "dateAdded": "2019-10-24T16:26:56.171Z",
+            "isoCode": "el",
+            "status": "completed",
+            "englishName": "Greek",
+            "localName": "ελληνικά",
+            "flagUrl": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/png100px/gr.png",
+            "flagUrl2": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/svg/gr.svg"
+        },
+        {
+            "id": "3664376389174311",
+            "projectId": "3666534157255774",
+            "languageId": "3664376389174311",
+            "dateAdded": "2019-10-27T23:28:46.222Z",
+            "isoCode": "pt",
+            "status": "completed",
+            "englishName": "Portuguese",
+            "localName": "Português",
+            "flagUrl": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/png100px/pt.png",
+            "flagUrl2": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/svg/pt.svg"
+        },
+        {
+            "id": "3664376389174317",
+            "projectId": "3666534157255774",
+            "languageId": "3664376389174317",
+            "dateAdded": "2019-10-27T23:23:20.887Z",
+            "isoCode": "es",
+            "status": "completed",
+            "englishName": "Spanish",
+            "localName": "Español",
+            "flagUrl": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/png100px/es.png",
+            "flagUrl2": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/svg/es.svg"
+        }
+    ],
+    "workspace": {
+        "id": "3666394520487004",
+        "name": "Localizewiz",
+        "slug": "localizewiz",
+        "ownerId": "3666383648851035",
+        "apiKey": "wiz_8e1cb15954aba474909f9117c888869c",
+        "tier": "0",
+        "created": "2019-10-07T00:27:03.982Z",
+        "updated": "2019-10-07T00:27:03.982Z",
+        "activeUntil": "2019-10-07T00:27:03.980Z",
+        "projectLimit": 5,
+        "stringLimit": 500,
+        "languageLimit": 15,
+        "stripeCardId": null,
+        "customerId": null,
+        "stripeSubscriptionId": null,
+        "subscriptionMethod": null,
+        "planId": "free_plan_0"
+    },
+    "files": [
+        {
+            "id": "3666836902118496",
+            "name": "Localizable.xml",
+            "path": null,
+            "type": "xml",
+            "s3Key": null,
+            "encoding": "7bit",
+            "contentType": "text/xml",
+            "created": "2019-10-07T00:27:56.743Z",
+            "updated": "2019-10-07T00:27:56.743Z",
+            "status": "uploaded",
+            "metadata": null,
+            "projectId": "3666534157255774",
+            "stringsCount": 6
+        },
+        {
+            "id": "3667605634155618",
+            "name": "Localizable.xml",
+            "path": null,
+            "type": "xml",
+            "s3Key": null,
+            "encoding": "7bit",
+            "contentType": "text/xml",
+            "created": "2019-10-07T00:29:28.383Z",
+            "updated": "2019-10-07T00:29:28.383Z",
+            "status": "uploaded",
+            "metadata": null,
+            "projectId": "3666534157255774",
+            "stringsCount": 22
+        }
+    ]
+}

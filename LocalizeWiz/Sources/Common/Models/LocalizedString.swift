@@ -11,17 +11,17 @@ import Foundation
 class LocalizedString: Codable {
     
     var id: String?
-    var key: String
+    var name: String
     var value: String
     var machineTranslation: String?
     var humanTranslation: String?
     var comments: String?
     var metadata: [String: String]?
-    var translatable: Bool
-    var locale: String
+    var translatable: Bool?
+    var locale: String?
     var created: Date?
     var updated: Date?
-    var translations: [String: String]
+    var translations: [String: String]?
 
     func getValue(forLanguage languageCode: String? = nil) -> String {
         guard languageCode != nil else {
@@ -29,7 +29,7 @@ class LocalizedString: Codable {
         }
 
         // check valid language
-        if let languageCode = languageCode, let translation = translations[languageCode] {
+        if let languageCode = languageCode, let translation = translations?[languageCode] {
             return translation
         }
         return value

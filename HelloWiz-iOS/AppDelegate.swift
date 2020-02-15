@@ -16,7 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Wiz.sharedInstance.configure(apiKey: "wiz_4d02db930fe4a03c8d0e2238e75272cb", projectId: "20316944494233234")
+        let testApiKey = "wiz_8e1cb15954aba474909f9117c888869c"
+        let testProjectId = "3666534157255774"
+
+        let apiKey = "wiz_c44cbfd8d665b9b6db7c049fae4d1c9d"
+        let projectId = "16517129557771591"
+
+        Wiz.sharedInstance.configure(apiKey: testApiKey, projectId: testProjectId, language: "zh")
         return true
     }
 

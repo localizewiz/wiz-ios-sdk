@@ -1,0 +1,313 @@
+
+{
+    "strings": [
+        {
+            "id": "3667606179415139",
+            "name": "Clear Recent",
+            "value": "Clear Recent",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803748",
+            "name": "Clear Recents",
+            "value": "Clear Recents",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803749",
+            "name": "Delete",
+            "value": "Delete",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803750",
+            "name": "Disable Readability",
+            "value": "Disable Readability",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803751",
+            "name": "Done",
+            "value": "Done",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803752",
+            "name": "Edit",
+            "value": "Edit",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803753",
+            "name": "Enable Readability",
+            "value": "Enable Readability",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803754",
+            "name": "Error",
+            "value": "Error",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803755",
+            "name": "Favorite",
+            "value": "Favorite",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803756",
+            "name": "Favorite Searches",
+            "value": "Favorite Searches",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803757",
+            "name": "Favorite Stories",
+            "value": "Favorite Stories",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803758",
+            "name": "Favorites",
+            "value": "Favorites",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803759",
+            "name": "General",
+            "value": "General",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803760",
+            "name": "Home",
+            "value": "Home",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803761",
+            "name": "Leave a Rating",
+            "value": "Leave a Rating",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 3,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803762",
+            "name": "Lbh-J2-qVU.title",
+            "value": "\\tLeft to Right",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 3,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803763",
+            "name": "Nop-cj-93Q.title",
+            "value": "\\tDefault",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803764",
+            "name": "RB4-Sm-HuC.title",
+            "value": "\\tRight to Left",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 3,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803765",
+            "name": "wb2-vD-lq4.title",
+            "value": "Align Right",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606187803766",
+            "name": "Default",
+            "value": "Default",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 1,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "3667606196192375",
+            "name": "Continue",
+            "value": "Do you want to continue?",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 5,
+            "translatable": true,
+            "created": "2019-10-07T00:29:28.448Z",
+            "updated": "2019-10-07T00:29:28.448Z"
+        },
+        {
+            "id": "16036195091874989",
+            "name": "Rise and shine",
+            "value": "Rise and shine",
+            "comments": "what happens in the morning",
+            "metadata": null,
+            "wordCount": 3,
+            "translatable": true,
+            "created": "2019-10-24T02:03:39.096Z",
+            "updated": "2019-10-24T02:03:39.096Z"
+        },
+        {
+            "id": "16470946814625098",
+            "name": "random stuff",
+            "value": "This is random",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 3,
+            "translatable": true,
+            "created": "2019-10-24T16:27:25.529Z",
+            "updated": "2019-10-24T16:27:25.529Z"
+        },
+        {
+            "id": "16503521415267672",
+            "name": "Beautiful day",
+            "value": "Today is a beautiful day",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 5,
+            "translatable": true,
+            "created": "2019-10-24T17:32:08.729Z",
+            "updated": "2019-10-24T17:32:08.729Z"
+        },
+        {
+            "id": "18851105341441420",
+            "name": "Once upon a time",
+            "value": "once upon a time",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 4,
+            "translatable": true,
+            "created": "2019-10-27T23:16:22.501Z",
+            "updated": "2019-10-27T23:16:22.501Z"
+        },
+        {
+            "id": "18854083414721935",
+            "name": "second time",
+            "value": "second time",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-27T23:22:17.603Z",
+            "updated": "2019-10-27T23:22:17.603Z"
+        },
+        {
+            "id": "18856232727086509",
+            "name": "Other time",
+            "value": "other time",
+            "comments": null,
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-27T23:26:33.827Z",
+            "updated": "2019-10-27T23:26:33.827Z"
+        },
+        {
+            "id": "18857011282183601",
+            "name": "string for last time",
+            "value": "last time",
+            "comments": "last time",
+            "metadata": null,
+            "wordCount": 2,
+            "translatable": true,
+            "created": "2019-10-27T23:28:06.630Z",
+            "updated": "2019-10-27T23:28:06.630Z"
+        }
+    ]
+}

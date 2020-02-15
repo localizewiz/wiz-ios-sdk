@@ -14,14 +14,15 @@ public class Workspace: Codable {
     public var name: String
     public var slug: String
     public var ownerId: String
+    public var apiKey: String
     public var created: Date
     public var updated: Date
-    public var apiKey: String
-    public var numberOfProjects: String
-    public var numberOfMembers: String
-    public var StringLimit: String
-    public var languageLimit: String
-    public var planId: String
     public var activeUntil: Date
-    public var projects: [Project]
+    public var numberOfProjects: Int?
+    public var numberOfMembers: Int?
+    public var projectLimit: Int
+    public var stringLimit: Int
+    public var languageLimit: Int
+    public var planId: String
+    public var projects: [Project]?
 }

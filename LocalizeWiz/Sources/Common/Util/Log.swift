@@ -12,7 +12,7 @@ class Log {
 
     private static let logPrefix: String = "LocalizeWiz"
     private static var dateFormat = "yyyy-MM-dd hh:mm:ss.SSS"
-    private static var currentLogLevel: LogLevel = .i
+    private static var currentLogLevel: LogLevel = .v
 
     static var dateFormatter: DateFormatter {
        let formatter = DateFormatter()
@@ -41,6 +41,9 @@ class Log {
         .s : "[🔥]"
     ]
 
+    static func setLogLevel(_ logLevel: LogLevel) {
+        self.currentLogLevel = logLevel
+    }
 
     static func s(_ object: Any) {
         log(object, level: .s)

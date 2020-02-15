@@ -8,6 +8,8 @@
 
 import Foundation
 
+let wizDecoder = JSONDecoder.wizDecoder
+
 class WizApiService {
 
     private let networkService: NetworkService = NetworkService()
@@ -21,7 +23,7 @@ class WizApiService {
             if let error = error {
                 completion(nil, error)
             } else {
-                if let data = result as? Data, let response = try? JSONDecoder().decode(Project.self, from: data) {
+                if let data = result as? Data, let response = try? wizDecoder.decode(Project.self, from: data) {
                     completion(response, nil)
                 } else {
                     completion(nil, WizError.unknowkError)
@@ -37,7 +39,8 @@ class WizApiService {
             if let error = error {
                 completion(nil, error)
             } else {
-                if let data = result as? Data, let response = try? JSONDecoder().decode(Project.self, from: data) {
+                let p = try! wizDecoder.decode(Project.self, from: result as! Data)
+                if let data = result as? Data, let response = try? wizDecoder.decode(Project.self, from: data) {
                     completion(response, nil)
                 } else {
                     completion(nil, WizError.unknowkError)
@@ -53,7 +56,11 @@ class WizApiService {
             if let error = error {
                 completion(nil, error)
             } else {
-                if let data = result as? Data, let envelope = try? JSONDecoder().decode(LocalizedStringEnvelope.self, from: data) {
+                let json = try! JSONSerialization.jsonObject(with: result as! Data, options: .allowFragments)
+                Log.d("Json: \(json)")
+                let env = try! wizDecoder.decode(LocalizedStringEnvelope.self, from: result as! Data)
+                Log.d("env: \(env)")
+                if let data = result as? Data, let envelope = try? wizDecoder.decode(LocalizedStringEnvelope.self, from: data) {
                     completion(envelope.strings, nil)
                 } else {
                     completion(nil, WizError.unknowkError)

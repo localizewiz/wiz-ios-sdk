@@ -23,7 +23,7 @@ class StringsCaches {
     func saveLocalizedStrings(_ strings: [LocalizedString], forLanguage languageCode: String) -> Void {
         let cache = Cache()
         for string in strings {
-            cache.set(string, forKey: string.key)
+            cache.set(string, forKey: string.name)
         }
         caches[languageCode] = cache
     }

@@ -13,11 +13,11 @@ public class Language: Codable {
     public var id: String
     public var isoCode: String
     public var englishName: String
-    public var flagUrl: String
-    public var flagUrl2: String
-    public var countryFlag: String
     public var localName: String
-    public var isChecked: Bool
-    public var added: Date
-    public var updated: Date
+    public var isChecked: Bool?
+    public var flagUrl: URL?
+    public var flagUrl2: URL?
+    public var countryFlag: String?
+    public var added: Date?
+    public var updated: Date?
 }

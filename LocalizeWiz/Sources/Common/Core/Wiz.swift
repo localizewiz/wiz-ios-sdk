@@ -38,6 +38,7 @@ public class Wiz {
             return
         }
 
+        Log.d("Configuring project {apiKey: \(apiKey), projectId: \(projectId), language: \(String(describing: language))}")
         self.config = Config(apiKey: apiKey, projectId: projectId)
 
         api.getProjectDetailsById(projectId) { (project, error) in
@@ -63,7 +64,7 @@ public class Wiz {
         let languageCode = self.currentLanguageCode
 
         if let project = self.project {
-            api.getStringTranslations(project.id, fileId: nil, language: languageCode) { (strings, error) in
+            api.getStringTranslations(project.id, fileId: nil, language: "zh") { (strings, error) in
                 if let strings = strings {
                     self.project?.saveStrings(strings, forLanguage: languageCode)
                 }

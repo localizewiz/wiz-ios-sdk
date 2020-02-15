@@ -1,0 +1,18 @@
+{
+    "id": "3666534157255774",
+    "name": "LocalizeWiz",
+    "description": "My Project",
+    "languageId": "3664376347231233",
+    "platform": "iOS",
+    "userId": "3666383648851035",
+    "workspaceId": "3666394520487004",
+    "created": "2019-10-07T00:27:20.610Z",
+    "language": {
+        "id": "3664376347231233",
+        "englishName": "English",
+        "localName": "English",
+        "isoCode": "en",
+        "flagUrl": "https://s3-us-west-2.amazonaws.com/images.localizewiz.com/flags/png100px/us.png",
+        "countryCode": null
+    }
+}
