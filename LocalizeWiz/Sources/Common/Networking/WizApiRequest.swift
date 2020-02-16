@@ -26,6 +26,7 @@ enum WizApiRequest {
     case addString(projectId: String)
     case getStrings(projectId: String, fileId: String?)
     case getStringTranslations(projectId: String, fileId: String?, locale: String)
+    case getProjectLanguages(projectId: String)
 
     case uploadFile(projectId: String, fileName: String, fileData: Data, contentType: String)
 
@@ -34,7 +35,7 @@ enum WizApiRequest {
     }
 
     var baseUrl: URL {
-        let testurl = "https://d1c10e60.ngrok.io"
+        let testurl = "https://ecf825d3.ngrok.io"
         let realurl = "https://dev.api.localizewiz.com"
         return URL(string: testurl )!
     }
@@ -52,6 +53,8 @@ enum WizApiRequest {
             return baseUrl.appendingPathComponent("/projects/\(projectId)/details")
         case .addString(let projectId), .getStrings(let projectId, _):
             return baseUrl.appendingPathComponent("/projects/\(projectId)/strings")
+        case .getProjectLanguages(let projectId):
+            return baseUrl.appendingPathComponent("/projects/\(projectId)/languages")
 
         case .uploadFile(let projectId, _, _, _):
             return baseUrl.appendingPathComponent("/projects/\(projectId)/files")

@@ -39,7 +39,6 @@ class WizApiService {
             if let error = error {
                 completion(nil, error)
             } else {
-                let p = try! wizDecoder.decode(Project.self, from: result as! Data)
                 if let data = result as? Data, let response = try? wizDecoder.decode(Project.self, from: data) {
                     completion(response, nil)
                 } else {
@@ -62,6 +61,26 @@ class WizApiService {
                 Log.d("env: \(env)")
                 if let data = result as? Data, let envelope = try? wizDecoder.decode(LocalizedStringEnvelope.self, from: data) {
                     completion(envelope.strings, nil)
+                } else {
+                    completion(nil, WizError.unknowkError)
+                }
+            }
+        }
+    }
+
+    func getProjectLanguages(_ projectId: String, completion: @escaping ([Language]?, Error?) -> Void) {
+        let request = WizApiRequest.getProjectLanguages(projectId: projectId)
+
+        networkService.sendRequest(request) { (result, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                let json = try! JSONSerialization.jsonObject(with: result as! Data, options: .allowFragments)
+                Log.d("Json: \(json)")
+                let env = try! wizDecoder.decode(LanguageEnvelope.self, from: result as! Data)
+                Log.d("env: \(env)")
+                if let data = result as? Data, let envelope = try? wizDecoder.decode(LanguageEnvelope.self, from: data) {
+                    completion(envelope.languages, nil)
                 } else {
                     completion(nil, WizError.unknowkError)
                 }

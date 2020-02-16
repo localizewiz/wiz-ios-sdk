@@ -27,6 +27,7 @@ public class Wiz {
 
     private lazy var api: WizApiService = WizApiService()
     private var currentLanguageCode = Locale.current.languageCode ?? ""
+    private var globalLanguageChangeHandler: (() -> Void)? = nil
 
     public func configure(apiKey: String, projectId: String, language: String? = Locale.current.languageCode) {
         guard !apiKey.isEmpty else {
@@ -64,10 +65,11 @@ public class Wiz {
         let languageCode = self.currentLanguageCode
 
         if let project = self.project {
-            api.getStringTranslations(project.id, fileId: nil, language: "zh") { (strings, error) in
+            api.getStringTranslations(project.id, fileId: nil, language: languageCode) { (strings, error) in
                 if let strings = strings {
                     self.project?.saveStrings(strings, forLanguage: languageCode)
                 }
+                self.notifyOfLanguageChange()
             }
         }
     }
@@ -76,12 +78,17 @@ public class Wiz {
         
     }
 
-    public func setLanguage(_ languageCode: String) {
+    public func setLanguage(_ languageCode: String, completion handler: (Bool) -> Void) {
         if self.isValidLanguage(languageCode) {
             self.currentLanguageCode = languageCode
         }
         refresh()
     }
+
+    public func setLanguageChangeHandler(_ handler: @escaping () -> Void) {
+        self.globalLanguageChangeHandler = handler
+    }
+
 
     public func isValidLanguage(_ languageCode: String) -> Bool {
         return true
@@ -101,6 +108,11 @@ public class Wiz {
 
     var isConfigured: Bool {
         return self.config != nil
+    }
+
+    private func notifyOfLanguageChange() {
+        self.globalLanguageChangeHandler?()
+        NotificationCenter.default.post(name: .WizLanguageChanged, object: nil, userInfo: [:])
     }
 
 }

@@ -26,3 +26,10 @@ public class Workspace: Codable {
     public var planId: String
     public var projects: [Project]?
 }
+
+extension Workspace: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return "{id: \(id), \(name), \(slug)}"
+    }
+}

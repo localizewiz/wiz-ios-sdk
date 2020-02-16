@@ -16,7 +16,7 @@ public class Project: Codable {
     public var languageId: String
     public var platform: String
     public var created: Date
-    public var updated: Date?
+    public var updated: Date
     public var iconUrl: String?
     public var workspaceId: String?
     public var workspace: Workspace?
@@ -46,4 +46,12 @@ public class Project: Codable {
     func saveStrings(_ strings: [LocalizedString], forLanguage languageCode: String) {
         self.localizations.saveLocalizedStrings(strings, forLanguage: languageCode)
     }
+}
+
+extension Project: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "{id: \(id), name: \(name), platform: \(platform), created: \(created), updated: \(updated)}"
+    }
+
+
 }
