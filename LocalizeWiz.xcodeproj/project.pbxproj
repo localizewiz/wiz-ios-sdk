@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4502D6C023C159CD00AD04E7 /* StringsCaches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4502D6BF23C159CD00AD04E7 /* StringsCaches.swift */; };
+		450F0D3B23F79962000D5C7E /* AppStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F0D3A23F79962000D5C7E /* AppStyle.swift */; };
+		450F0D3E23F799B6000D5C7E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F0D3D23F799B6000D5C7E /* UIColor.swift */; };
+		450F0D4123F79B32000D5C7E /* SelectLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F0D4023F79B32000D5C7E /* SelectLanguageViewController.swift */; };
+		450F0D4323F79D1A000D5C7E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F0D4223F79D1A000D5C7E /* UIView.swift */; };
+		450F0D4523F87AA6000D5C7E /* LanguageEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F0D4423F87AA6000D5C7E /* LanguageEnvelope.swift */; };
+		450F0D4923F88003000D5C7E /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F0D4823F88003000D5C7E /* LanguageTableViewCell.swift */; };
+		450F0D4B23F881DD000D5C7E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F0D4A23F881DD000D5C7E /* UIImageView.swift */; };
+		450F0D4E23F8878C000D5C7E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 450F0D4D23F8878C000D5C7E /* Localizable.strings */; };
 		452A095B23B924DB00A78574 /* LocalizeWiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 452A095123B924DB00A78574 /* LocalizeWiz.framework */; };
 		452A096023B924DB00A78574 /* LocalizeWizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A095F23B924DB00A78574 /* LocalizeWizTests.swift */; };
 		452A096223B924DB00A78574 /* LocalizeWiz.h in Headers */ = {isa = PBXBuildFile; fileRef = 452A095423B924DB00A78574 /* LocalizeWiz.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,7 +44,7 @@
 		453C345223D7CD5F00AC5CA8 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C345123D7CD5F00AC5CA8 /* Views.swift */; };
 		453C348E23D7D5D300AC5CA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C348D23D7D5D300AC5CA8 /* AppDelegate.swift */; };
 		453C349023D7D5D300AC5CA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C348F23D7D5D300AC5CA8 /* SceneDelegate.swift */; };
-		453C349223D7D5D300AC5CA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C349123D7D5D300AC5CA8 /* ViewController.swift */; };
+		453C349223D7D5D300AC5CA8 /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C349123D7D5D300AC5CA8 /* HelloViewController.swift */; };
 		453C349523D7D5D300AC5CA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 453C349323D7D5D300AC5CA8 /* Main.storyboard */; };
 		453C349723D7D5D500AC5CA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453C349623D7D5D500AC5CA8 /* Assets.xcassets */; };
 		453C349A23D7D5D500AC5CA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 453C349823D7D5D500AC5CA8 /* LaunchScreen.storyboard */; };
@@ -57,6 +65,7 @@
 		453C34C723DA934700AC5CA8 /* JSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C34C623DA934700AC5CA8 /* JSONEncoder.swift */; };
 		453C34C823DA935800AC5CA8 /* JSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C34C623DA934700AC5CA8 /* JSONEncoder.swift */; };
 		453C34CA23DA942300AC5CA8 /* LocalizedStringEnvelope.json in Resources */ = {isa = PBXBuildFile; fileRef = 453C34C923DA942300AC5CA8 /* LocalizedStringEnvelope.json */; };
+		456A7AB923F8D4C700FFB991 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A7AB823F8D4C700FFB991 /* NSNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +87,14 @@
 
 /* Begin PBXFileReference section */
 		4502D6BF23C159CD00AD04E7 /* StringsCaches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringsCaches.swift; sourceTree = "<group>"; };
+		450F0D3A23F79962000D5C7E /* AppStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStyle.swift; sourceTree = "<group>"; };
+		450F0D3D23F799B6000D5C7E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		450F0D4023F79B32000D5C7E /* SelectLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguageViewController.swift; sourceTree = "<group>"; };
+		450F0D4223F79D1A000D5C7E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		450F0D4423F87AA6000D5C7E /* LanguageEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageEnvelope.swift; sourceTree = "<group>"; };
+		450F0D4823F88003000D5C7E /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
+		450F0D4A23F881DD000D5C7E /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		450F0D4D23F8878C000D5C7E /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		452A095123B924DB00A78574 /* LocalizeWiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LocalizeWiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		452A095423B924DB00A78574 /* LocalizeWiz.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizeWiz.h; sourceTree = "<group>"; };
 		452A095523B924DB00A78574 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,7 +127,7 @@
 		453C348B23D7D5D300AC5CA8 /* HelloWiz-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelloWiz-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		453C348D23D7D5D300AC5CA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		453C348F23D7D5D300AC5CA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		453C349123D7D5D300AC5CA8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		453C349123D7D5D300AC5CA8 /* HelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
 		453C349423D7D5D300AC5CA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		453C349623D7D5D500AC5CA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		453C349923D7D5D500AC5CA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -129,6 +146,7 @@
 		453C34C223D91D5600AC5CA8 /* Language.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Language.json; sourceTree = "<group>"; };
 		453C34C623DA934700AC5CA8 /* JSONEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoder.swift; sourceTree = "<group>"; };
 		453C34C923DA942300AC5CA8 /* LocalizedStringEnvelope.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocalizedStringEnvelope.json; sourceTree = "<group>"; };
+		456A7AB823F8D4C700FFB991 /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,8 +186,53 @@
 		450F0D3923F79864000D5C7E /* App */ = {
 			isa = PBXGroup;
 			children = (
+				453C348D23D7D5D300AC5CA8 /* AppDelegate.swift */,
+				450F0D3A23F79962000D5C7E /* AppStyle.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		450F0D3C23F799A1000D5C7E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				450F0D3D23F799B6000D5C7E /* UIColor.swift */,
+				450F0D4223F79D1A000D5C7E /* UIView.swift */,
+				450F0D4A23F881DD000D5C7E /* UIImageView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		450F0D3F23F79AC5000D5C7E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				453C349123D7D5D300AC5CA8 /* HelloViewController.swift */,
+				450F0D4023F79B32000D5C7E /* SelectLanguageViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		450F0D4623F87FE3000D5C7E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				450F0D4723F87FEA000D5C7E /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		450F0D4723F87FEA000D5C7E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				450F0D4823F88003000D5C7E /* LanguageTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		450F0D4C23F8877D000D5C7E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				450F0D4D23F8878C000D5C7E /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		452A094723B924DB00A78574 = {
@@ -266,6 +329,7 @@
 			children = (
 				452A097823BBF8D600A78574 /* Base */,
 				453C34AF23D7D92600AC5CA8 /* DateExtensions.swift */,
+				456A7AB823F8D4C700FFB991 /* NSNotification.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -307,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				452A099623BED18400A78574 /* LocalizedStringEnvelope.swift */,
+				450F0D4423F87AA6000D5C7E /* LanguageEnvelope.swift */,
 			);
 			path = Envelopes;
 			sourceTree = "<group>";
@@ -359,10 +424,12 @@
 		453C348C23D7D5D300AC5CA8 /* HelloWiz-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				450F0D4C23F8877D000D5C7E /* Resources */,
+				450F0D4623F87FE3000D5C7E /* Views */,
+				450F0D3F23F79AC5000D5C7E /* Controllers */,
+				450F0D3C23F799A1000D5C7E /* Extensions */,
 				450F0D3923F79864000D5C7E /* App */,
-				453C348D23D7D5D300AC5CA8 /* AppDelegate.swift */,
 				453C348F23D7D5D300AC5CA8 /* SceneDelegate.swift */,
-				453C349123D7D5D300AC5CA8 /* ViewController.swift */,
 				453C349323D7D5D300AC5CA8 /* Main.storyboard */,
 				453C349623D7D5D500AC5CA8 /* Assets.xcassets */,
 				453C349823D7D5D500AC5CA8 /* LaunchScreen.storyboard */,
@@ -567,6 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				453C349A23D7D5D500AC5CA8 /* LaunchScreen.storyboard in Resources */,
+				450F0D4E23F8878C000D5C7E /* Localizable.strings in Resources */,
 				453C349723D7D5D500AC5CA8 /* Assets.xcassets in Resources */,
 				453C349523D7D5D300AC5CA8 /* Main.storyboard in Resources */,
 			);
@@ -597,6 +665,7 @@
 				4502D6C023C159CD00AD04E7 /* StringsCaches.swift in Sources */,
 				452A099723BED18400A78574 /* LocalizedStringEnvelope.swift in Sources */,
 				453C344F23D7CD3A00AC5CA8 /* OsxViews.swift in Sources */,
+				456A7AB923F8D4C700FFB991 /* NSNotification.swift in Sources */,
 				452A098A23BEB14900A78574 /* Config.swift in Sources */,
 				453C34B423D9127000AC5CA8 /* JSONDecoder.swift in Sources */,
 				452A097323B9263400A78574 /* Language.swift in Sources */,
@@ -604,6 +673,7 @@
 				452A098C23BEB7E500A78574 /* FIleReader.swift in Sources */,
 				452A097623BBF83600A78574 /* WizError.swift in Sources */,
 				452A097C23BBF9C800A78574 /* UrlRequestConvertible.swift in Sources */,
+				450F0D4523F87AA6000D5C7E /* LanguageEnvelope.swift in Sources */,
 				452A099223BEC75800A78574 /* ErrorReporter.swift in Sources */,
 				452A096F23B9254600A78574 /* Workspace.swift in Sources */,
 				453C34C723DA934700AC5CA8 /* JSONEncoder.swift in Sources */,
@@ -632,9 +702,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				453C349223D7D5D300AC5CA8 /* ViewController.swift in Sources */,
+				450F0D4123F79B32000D5C7E /* SelectLanguageViewController.swift in Sources */,
+				450F0D4B23F881DD000D5C7E /* UIImageView.swift in Sources */,
+				453C349223D7D5D300AC5CA8 /* HelloViewController.swift in Sources */,
 				453C348E23D7D5D300AC5CA8 /* AppDelegate.swift in Sources */,
+				450F0D4323F79D1A000D5C7E /* UIView.swift in Sources */,
 				453C349023D7D5D300AC5CA8 /* SceneDelegate.swift in Sources */,
+				450F0D4923F88003000D5C7E /* LanguageTableViewCell.swift in Sources */,
+				450F0D3B23F79962000D5C7E /* AppStyle.swift in Sources */,
+				450F0D3E23F799B6000D5C7E /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  LocalizeWiz
+
+  Created by John Warmann on 2020-02-15.
+  Copyright © 2020 LocalizeWiz. All rights reserved.
+*/
+
+"Hello LocalizeWiz" = "Hello LocalizeWiz";
+
+"How do you say \"cat\" in Japanese" = "How do you say \"cat\" in Japanese";
+
+"Cat" = "Cat";
+
+"Change Language" = "Change Language";
+
+"Select A Language" = "Select A Language";
+
+"Cancel" = "Cancel";
+
+"Save" = "Save";
+
+"Okay" = "Okay";
+
+"Sorry" = "Sorry";
+
+"An error occurred" = "An error occurred";
+
+/* Language names */
+"Chinese Simplified" = "Chinese Simplified";
+
+"Greek" = "Greek";
+
+"English" = "English";
+
+"Japanese" = "Japanese";
+
+"Portuguese" = "Portuguese";
+
+"Spanish" = "Spanish";
