@@ -32,6 +32,14 @@ class FileUtils {
         return nil
     }
 
+    static func createWizCachesDirectory() {
+        let defaultFileManager = FileManager.default
+        if let wizCachesDirectoryUrl = self.wizCachesDirectoryUrl(),
+            !defaultFileManager.fileExists(atPath: wizCachesDirectoryUrl.path) {
+            try? defaultFileManager.createDirectory(at: wizCachesDirectoryUrl, withIntermediateDirectories: true, attributes: nil)
+        }
+    }
+
     static func clearCache() {
         if let wizCachesDirectoryUrl = self.wizCachesDirectoryUrl() {
             try? FileManager.default.removeItem(at: wizCachesDirectoryUrl)

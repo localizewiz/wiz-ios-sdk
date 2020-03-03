@@ -66,6 +66,7 @@
 		453C34C823DA935800AC5CA8 /* JSONEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C34C623DA934700AC5CA8 /* JSONEncoder.swift */; };
 		453C34CA23DA942300AC5CA8 /* LocalizedStringEnvelope.json in Resources */ = {isa = PBXBuildFile; fileRef = 453C34C923DA942300AC5CA8 /* LocalizedStringEnvelope.json */; };
 		456A7AB923F8D4C700FFB991 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A7AB823F8D4C700FFB991 /* NSNotification.swift */; };
+		456A7ABB23F9BBA900FFB991 /* Cacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A7ABA23F9BBA900FFB991 /* Cacheable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		453C34C623DA934700AC5CA8 /* JSONEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoder.swift; sourceTree = "<group>"; };
 		453C34C923DA942300AC5CA8 /* LocalizedStringEnvelope.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocalizedStringEnvelope.json; sourceTree = "<group>"; };
 		456A7AB823F8D4C700FFB991 /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
+		456A7ABA23F9BBA900FFB991 /* Cacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cacheable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -363,6 +365,7 @@
 				453C34B323D9127000AC5CA8 /* JSONDecoder.swift */,
 				453C34B523D9152500AC5CA8 /* DateFormatter.swift */,
 				453C34C623DA934700AC5CA8 /* JSONEncoder.swift */,
+				456A7ABA23F9BBA900FFB991 /* Cacheable.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -680,6 +683,7 @@
 				452A098123BC178A00A78574 /* Wiz.swift in Sources */,
 				453C345223D7CD5F00AC5CA8 /* Views.swift in Sources */,
 				452A097123B9255500A78574 /* Project.swift in Sources */,
+				456A7ABB23F9BBA900FFB991 /* Cacheable.swift in Sources */,
 				452A099023BEC39200A78574 /* Storage.swift in Sources */,
 				452A099423BECCEC00A78574 /* LocalizedString.swift in Sources */,
 			);

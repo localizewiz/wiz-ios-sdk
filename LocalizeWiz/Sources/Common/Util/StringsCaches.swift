@@ -26,6 +26,23 @@ class StringsCaches {
             cache.set(string, forKey: string.name)
         }
         caches[languageCode] = cache
+
+        if let cacheUrlForLanguage = self.cacheUrl(forLanguage: languageCode) {
+            let data = try? JSONEncoder.wizEncoder.encode(cache)
+            try? data?.write(to: cacheUrlForLanguage)
+        }
+    }
+
+    func restoreLocalizedStrings(forLangauge languageCode: String) {
+        if let cacheUrlForLanguage = self.cacheUrl(forLanguage: languageCode),
+            let data = try? Data(contentsOf: cacheUrlForLanguage),
+            let cache = try? JSONDecoder.wizDecoder.decode(Cache.self, from: data) {
+            caches[languageCode] = cache
+        }
+    }
+
+    func cache(forLanguage languageCode: String)  -> Cache? {
+        return caches[languageCode]
     }
 
     func purgeAll() {
@@ -40,5 +57,12 @@ class StringsCaches {
             cache.clear()
             caches.removeValue(forKey: languageCode)
         }
+    }
+
+    func cacheUrl(forLanguage languageCode: String) -> URL? {
+        if let url = FileUtils.wizCachesDirectoryUrl()?.appendingPathComponent("StringCaches-\(languageCode)") {
+            return url
+        }
+        return nil
     }
 }

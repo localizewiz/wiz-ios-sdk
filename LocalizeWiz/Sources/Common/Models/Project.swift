@@ -28,7 +28,14 @@ public class Project: Codable {
 
 //    public var files: [Any]
 
-    func initialize() {
+    func initialize(withFilenames filenames: [String]) {
+        for filename in filenames {
+            let dotIndex = filename.lastIndex(of: ".") ?? filename.endIndex
+            let name = filename[..<dotIndex]
+            let ext = filename[dotIndex...]
+            if let resourceFile = Bundle.main.path(forResource: String(name), ofType: String(ext ?? "")) {
+            }
+        }
         Log.i("Initializing project")
     }
 
@@ -46,12 +53,50 @@ public class Project: Codable {
     func saveStrings(_ strings: [LocalizedString], forLanguage languageCode: String) {
         self.localizations.saveLocalizedStrings(strings, forLanguage: languageCode)
     }
+
+    func restoreFromCache() {
+        if let languages = self.languages {
+            for language in languages {
+                self.localizations.restoreLocalizedStrings(forLangauge: language.isoCode)
+            }
+        }
+    }
+
+    func cache(forLanguage languageCode: String) -> Cache? {
+        return self.localizations.cache(forLanguage: languageCode)
+    }
+
 }
 
 extension Project: CustomDebugStringConvertible {
     public var debugDescription: String {
         return "{id: \(id), name: \(name), platform: \(platform), created: \(created), updated: \(updated)}"
     }
+}
 
+extension Project: Cacheable {
+
+    typealias T = Project
+
+    static var cacheUrl: URL? {
+        let url = FileUtils.wizCachesDirectoryUrl()?.appendingPathComponent("project")
+        return url
+    }
+
+    func saveToCache() {
+        if let cacheUrl = Project.cacheUrl {
+            let data = try! JSONEncoder.wizEncoder.encode(self)
+            try! data.write(to: cacheUrl)
+        }
+    }
+
+    static func initFromCache() -> Project? {
+        if let cacheUrl = Project.cacheUrl,
+            FileManager.default.fileExists(atPath: cacheUrl.path),
+            let data = try? Data(contentsOf: cacheUrl) {
+            return try? JSONDecoder.wizDecoder.decode(Project.self, from: data)
+        }
+        return nil
+    }
 
 }

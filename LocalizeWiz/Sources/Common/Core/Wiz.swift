@@ -29,7 +29,7 @@ public class Wiz {
     private var currentLanguageCode = Locale.current.languageCode ?? ""
     private var globalLanguageChangeHandler: (() -> Void)? = nil
 
-    public func configure(apiKey: String, projectId: String, language: String? = Locale.current.languageCode) {
+    public func configure(apiKey: String, projectId: String, language: String? = Locale.current.languageCode, localizationFileNames: [String] = ["Localizable.strings"]) {
         guard !apiKey.isEmpty else {
             Log.s("Invalid apiKey: \(apiKey)")
             return
@@ -39,8 +39,12 @@ public class Wiz {
             return
         }
 
+        self.createCachesDirectory()
+        
         Log.d("Configuring project {apiKey: \(apiKey), projectId: \(projectId), language: \(String(describing: language))}")
         self.config = Config(apiKey: apiKey, projectId: projectId)
+
+        self.restoreFromCache()
 
         api.getProjectDetailsById(projectId) { (project, error) in
 
@@ -58,6 +62,7 @@ public class Wiz {
             }
 
             self.refresh()
+            self.saveCurrentProject()
         }
     }
 
@@ -69,13 +74,10 @@ public class Wiz {
                 if let strings = strings {
                     self.project?.saveStrings(strings, forLanguage: languageCode)
                 }
+
                 self.notifyOfLanguageChange()
             }
         }
-    }
-
-    public func fetchLocalizations(_ languages: [String]) {
-        
     }
 
     public func setLanguage(_ languageCode: String, completion handler: (Bool) -> Void) {
@@ -110,6 +112,24 @@ public class Wiz {
         return self.config != nil
     }
 
+    func uploadProjectFiles(_ filenames: [String]) {
+        if let project = self.project {
+            for filename in filenames {
+                let dotIndex = filename.lastIndex(of: ".") ?? filename.endIndex
+                let name = filename[..<dotIndex]
+                let ext = filename[dotIndex...]
+                if let resourceFilePath = Bundle.main.path(forResource: String(name), ofType: String(ext)),
+                    let fileData = try? Data(contentsOf: URL(fileURLWithPath: resourceFilePath)) {
+                    api.uploadProjectFile(project.id, filename: filename, fileData: fileData) { (uploaded, error) in
+
+                    }
+                }
+            }
+        }
+
+        Log.i("Initializing project")
+    }
+
     private func notifyOfLanguageChange() {
         self.globalLanguageChangeHandler?()
         NotificationCenter.default.post(name: .WizLanguageChanged, object: nil, userInfo: [:])
@@ -117,9 +137,26 @@ public class Wiz {
 
 }
 
+// MARK: - Caching
 extension Wiz {
 
-    private func restoreProjectFromCache() {
-
+    private func createCachesDirectory() {
+        FileUtils.createWizCachesDirectory()
     }
+
+    private func saveCurrentProject() {
+           if let project = self.project {
+               project.saveToCache()
+           }
+       }
+
+       private func restoreFromCache() {
+           if let project = Project.initFromCache(), project.id == self.config?.projectId {
+               self.project = project
+               project.restoreFromCache()
+           } else {
+               self.project = nil
+           }
+       }
+
 }
