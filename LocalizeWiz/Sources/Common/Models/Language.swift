@@ -21,3 +21,9 @@ public class Language: Codable {
     public var added: Date?
     public var updated: Date?
 }
+
+extension Language: Equatable {
+    public static func == (lhs: Language, rhs: Language) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

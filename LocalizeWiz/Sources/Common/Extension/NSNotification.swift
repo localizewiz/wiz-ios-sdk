@@ -10,6 +10,6 @@ import Foundation
 
 public extension NSNotification.Name {
 
-    static let WizLanguageChanged: NSNotification.Name = Notification.Name("WizLanguageChanged")
-    static let WizProjectLoaded: Notification.Name = Notification.Name("WizProjectLoaded")
+    static let WizLanguageChanged: NSNotification.Name = Notification.Name("LocalizeWiz.LanguageChanged")
+    static let WizProjectLoaded: Notification.Name = Notification.Name("LocalizeWiz.ProjectLoaded")
 }

@@ -67,6 +67,7 @@
 		453C34CA23DA942300AC5CA8 /* LocalizedStringEnvelope.json in Resources */ = {isa = PBXBuildFile; fileRef = 453C34C923DA942300AC5CA8 /* LocalizedStringEnvelope.json */; };
 		456A7AB923F8D4C700FFB991 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A7AB823F8D4C700FFB991 /* NSNotification.swift */; };
 		456A7ABB23F9BBA900FFB991 /* Cacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A7ABA23F9BBA900FFB991 /* Cacheable.swift */; };
+		45C818912485ED9000836E5B /* LanguageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C818902485ED9000836E5B /* LanguageMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		453C34C923DA942300AC5CA8 /* LocalizedStringEnvelope.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocalizedStringEnvelope.json; sourceTree = "<group>"; };
 		456A7AB823F8D4C700FFB991 /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 		456A7ABA23F9BBA900FFB991 /* Cacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cacheable.swift; sourceTree = "<group>"; };
+		45C818902485ED9000836E5B /* LanguageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,11 +311,11 @@
 			isa = PBXGroup;
 			children = (
 				452A099523BED17600A78574 /* Envelopes */,
-				452A096E23B9254600A78574 /* Workspace.swift */,
-				452A097023B9255500A78574 /* Project.swift */,
-				452A097223B9263400A78574 /* Language.swift */,
 				452A097D23BC16CD00A78574 /* Json.swift */,
+				452A097223B9263400A78574 /* Language.swift */,
 				452A099323BECCEC00A78574 /* LocalizedString.swift */,
+				452A097023B9255500A78574 /* Project.swift */,
+				452A096E23B9254600A78574 /* Workspace.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -346,8 +348,8 @@
 		452A097F23BC177D00A78574 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				452A098023BC178A00A78574 /* Wiz.swift */,
 				452A098923BEB14900A78574 /* Config.swift */,
+				452A098023BC178A00A78574 /* Wiz.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -356,16 +358,17 @@
 			isa = PBXGroup;
 			children = (
 				452A098323BEA41400A78574 /* Cache.swift */,
+				456A7ABA23F9BBA900FFB991 /* Cacheable.swift */,
+				453C34B523D9152500AC5CA8 /* DateFormatter.swift */,
+				452A099123BEC75800A78574 /* ErrorReporter.swift */,
 				452A098B23BEB7E500A78574 /* FIleReader.swift */,
 				452A098D23BEBD0600A78574 /* FileUtils.swift */,
-				452A098F23BEC39200A78574 /* Storage.swift */,
-				452A099123BEC75800A78574 /* ErrorReporter.swift */,
-				4502D6BF23C159CD00AD04E7 /* StringsCaches.swift */,
-				453C34AD23D7D86500AC5CA8 /* Log.swift */,
 				453C34B323D9127000AC5CA8 /* JSONDecoder.swift */,
-				453C34B523D9152500AC5CA8 /* DateFormatter.swift */,
 				453C34C623DA934700AC5CA8 /* JSONEncoder.swift */,
-				456A7ABA23F9BBA900FFB991 /* Cacheable.swift */,
+				45C818902485ED9000836E5B /* LanguageMapper.swift */,
+				453C34AD23D7D86500AC5CA8 /* Log.swift */,
+				452A098F23BEC39200A78574 /* Storage.swift */,
+				4502D6BF23C159CD00AD04E7 /* StringsCaches.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -373,8 +376,8 @@
 		452A099523BED17600A78574 /* Envelopes */ = {
 			isa = PBXGroup;
 			children = (
-				452A099623BED18400A78574 /* LocalizedStringEnvelope.swift */,
 				450F0D4423F87AA6000D5C7E /* LanguageEnvelope.swift */,
+				452A099623BED18400A78574 /* LocalizedStringEnvelope.swift */,
 			);
 			path = Envelopes;
 			sourceTree = "<group>";
@@ -659,6 +662,7 @@
 			files = (
 				453C34B023D7D92600AC5CA8 /* DateExtensions.swift in Sources */,
 				452A097E23BC16CD00A78574 /* Json.swift in Sources */,
+				45C818912485ED9000836E5B /* LanguageMapper.swift in Sources */,
 				453C34AE23D7D86500AC5CA8 /* Log.swift in Sources */,
 				452A098623BEA7DB00A78574 /* WizApiRequest.swift in Sources */,
 				452A098423BEA41400A78574 /* Cache.swift in Sources */,

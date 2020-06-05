@@ -10,10 +10,15 @@ import Foundation
 
 class StringsCaches {
 
+    static let instance: StringsCaches = StringsCaches()
+
+    private init() {}
+
     private var caches: [String: Cache] = [:]
 
     func getString(_ key: String, inLanguage languageCode: String) -> String? {
         if let cache = caches[languageCode] {
+
             return cache.get(key)?.humanTranslation
         }
 

@@ -11,6 +11,6 @@ import Foundation
 class ErrorReporter {
     
     static func report(_ error: Error) {
-
+        Log.e(error)
     }
 }

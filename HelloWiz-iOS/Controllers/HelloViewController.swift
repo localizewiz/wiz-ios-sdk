@@ -11,15 +11,17 @@ import LocalizeWiz
 
 class HelloViewController: UIViewController {
 
-
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var answerLabel: UILabel!
     @IBOutlet private weak var changeButton: UIButton!
-    private let mainQueue = DispatchQueue.main
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
+        // Load Japanese strings explicitly since we want to show Japanese translation for "Cat".
+        // Translations for the current locale are automatically loaded
+        self.loadJapanese()
         NotificationCenter.default.addObserver(self, selector: #selector(updateStrings), name: NSNotification.Name.WizLanguageChanged, object: nil)
     }
 
@@ -28,15 +30,16 @@ class HelloViewController: UIViewController {
         self.updateStrings()
     }
 
+    private func loadJapanese() {
+        wiz.refreshLanguage("ja")
+    }
 
     @objc func updateStrings() {
-        mainQueue.async {
-            self.navigationItem.title = wiz.getString("Hello LocalizeWiz")
+        self.navigationItem.title = wiz.getString("Hello LocalizeWiz")
 
-            self.questionLabel.text = wiz.getString("How do you say 'cat' in Japanese?")
-            self.answerLabel.text = wiz.getString("Cat")
-            self.changeButton.setTitle(wiz.getString("Change Language"), for: .normal)
-        }
+        self.questionLabel.text = wiz.getString("How do you say 'cat' in Japanese?")
+        self.answerLabel.text = wiz.getString("Cat", languageCode: "ja")
+        self.changeButton.setTitle(wiz.getString("Change Language"), for: .normal)
     }
 }
 

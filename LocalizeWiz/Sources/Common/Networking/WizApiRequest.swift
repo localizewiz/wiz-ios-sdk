@@ -35,9 +35,8 @@ enum WizApiRequest {
     }
 
     var baseUrl: URL {
-        let testurl = "https://ecf825d3.ngrok.io"
         let realurl = "https://dev.api.localizewiz.com"
-        return URL(string: testurl )!
+        return URL(string: realurl)!
     }
 
     var headers: [String: String] {

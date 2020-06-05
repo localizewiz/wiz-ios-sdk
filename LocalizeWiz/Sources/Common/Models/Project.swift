@@ -24,18 +24,13 @@ public class Project: Codable {
     public var languages: [Language]?
     public var isInitialized: Bool?
 
-    private lazy var localizations: StringsCaches = StringsCaches()
+    private lazy var localizations: StringsCaches = StringsCaches.instance
+    private lazy var api: WizApiService = WizApiService()
 
 //    public var files: [Any]
 
     func initialize(withFilenames filenames: [String]) {
-        for filename in filenames {
-            let dotIndex = filename.lastIndex(of: ".") ?? filename.endIndex
-            let name = filename[..<dotIndex]
-            let ext = filename[dotIndex...]
-            if let resourceFile = Bundle.main.path(forResource: String(name), ofType: String(ext ?? "")) {
-            }
-        }
+        self.uploadProjectFiles(filenames)
         Log.i("Initializing project")
     }
 
@@ -98,5 +93,26 @@ extension Project: Cacheable {
         }
         return nil
     }
+}
 
+extension Project {
+    func uploadProjectFiles(_ filenames: [String]) {
+        filenames.forEach { (filename) in
+            self.uploadFile(filename)
+        }
+
+        Log.i("Initializing project")
+    }
+
+    func uploadFile(_ filename: String, inBundle bundle: Bundle = Bundle.main) {
+        let dotIndex = filename.lastIndex(of: ".") ?? filename.endIndex
+        let name = filename[..<dotIndex]
+        let ext = filename[dotIndex...]
+        if let resourceFilePath = bundle.path(forResource: String(name), ofType: String(ext)),
+            let fileData = try? Data(contentsOf: URL(fileURLWithPath: resourceFilePath)) {
+            api.uploadProjectFile(self.id, filename: filename, fileData: fileData) { (uploaded, error) in
+
+            }
+        }
+    }
 }

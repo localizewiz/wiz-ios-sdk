@@ -8,17 +8,19 @@
 
 import Foundation
 
-let wizQueue: DispatchQueue = DispatchQueue(label: "LocalizeWiz",
-                                            qos: .default,
-                                            attributes: [],
-                                            autoreleaseFrequency: .inherit,
-                                            target: nil)
+
 
 public class Wiz {
 
-    public private (set) static var sharedInstance: Wiz = Wiz()
+    public static let sharedInstance: Wiz = Wiz()
 
-    private init() {}
+
+    private lazy var wizQueue: DispatchQueue = DispatchQueue(label: "LocalizeWiz",
+                                                        qos: .default,
+                                                        attributes: [],
+                                                        autoreleaseFrequency: .inherit,
+                                                        target: nil)
+    private lazy var mainQueue = DispatchQueue.main
 
     public private (set) var project: Project?
     public private (set) var workspace: Workspace?
@@ -29,7 +31,13 @@ public class Wiz {
     private var currentLanguageCode = Locale.current.languageCode ?? ""
     private var globalLanguageChangeHandler: (() -> Void)? = nil
 
-    public func configure(apiKey: String, projectId: String, language: String? = Locale.current.languageCode, localizationFileNames: [String] = ["Localizable.strings"]) {
+
+    private init() {}
+
+    public func setup(apiKey: String, projectId: String, language: String? = Locale.preferredLanguages.first, localizationFileNames: [String] = ["Localizable.strings"]) {
+
+        Log.d("User language is: \(String(describing: language))")
+
         guard !apiKey.isEmpty else {
             Log.s("Invalid apiKey: \(apiKey)")
             return
@@ -39,51 +47,62 @@ public class Wiz {
             return
         }
 
-        self.createCachesDirectory()
+        let language = language ?? self.currentLanguageCode
+        self.currentLanguageCode = self.mappedLanguage(language)
+        self.setupCaches()
         
         Log.d("Configuring project {apiKey: \(apiKey), projectId: \(projectId), language: \(String(describing: language))}")
         self.config = Config(apiKey: apiKey, projectId: projectId)
 
         self.restoreFromCache()
 
-        api.getProjectDetailsById(projectId) { (project, error) in
+        api.getProjectDetailsById(projectId) { result in
 
-            if let project = project {
-                self.project = project
-                if let workspace = project.workspace {
-                    self.workspace = workspace
-                }
+            switch result {
+            case .success(let project):
+                self.wizQueue.async {
+                    self.project = project
+                    if let workspace = project.workspace {
+                        self.workspace = workspace
+                    }
 
-                if let isInitialized = project.isInitialized, !isInitialized {
-                    project.initialize()
+                    if let isInitialized = project.isInitialized, !isInitialized {
+                        project.initialize(withFilenames: localizationFileNames)
+                    }
+
+                    self.refresh()
+                    self.saveCurrentProject()
                 }
-            } else if let error = error {
+            case .failure(let error):
                 Log.e(error)
             }
-
-            self.refresh()
-            self.saveCurrentProject()
         }
     }
 
     public func refresh() {
         let languageCode = self.currentLanguageCode
 
-        if let project = self.project {
-            api.getStringTranslations(project.id, fileId: nil, language: languageCode) { (strings, error) in
-                if let strings = strings {
-                    self.project?.saveStrings(strings, forLanguage: languageCode)
-                }
+        self.refreshLanguage(languageCode)
+    }
 
-                self.notifyOfLanguageChange()
+    public func refreshLanguage(_ languageCode: String) {
+        if let project = self.project {
+            api.getStringTranslations(project.id, fileId: nil, language: languageCode) { result in
+                switch result {
+                case .success(let strings):
+                    self.project?.saveStrings(strings, forLanguage: languageCode)
+                    self.mainQueue.async {
+                        self.notifyOfLanguageChange(languageCode)
+                    }
+                case .failure(let error):
+                    Log.e(error)
+                }
             }
         }
     }
 
     public func setLanguage(_ languageCode: String, completion handler: (Bool) -> Void) {
-        if self.isValidLanguage(languageCode) {
-            self.currentLanguageCode = languageCode
-        }
+        self.currentLanguageCode = languageCode
         refresh()
     }
 
@@ -91,20 +110,20 @@ public class Wiz {
         self.globalLanguageChangeHandler = handler
     }
 
-
-    public func isValidLanguage(_ languageCode: String) -> Bool {
-        return true
-    }
-
     // MARK:- Convenience methods
 
     public func getString(_ key: String) -> String {
-        var string: String = self.project?.getString(key, inLanguage: self.currentLanguageCode) ?? ""
+        return self.getString(key, languageCode: self.currentLanguageCode)
+    }
+
+    public func getString(_ key: String, languageCode: String) -> String {
+        var string: String = self.project?.getString(key, inLanguage: languageCode) ?? ""
 
         // fallback
         if string.isEmpty {
             string = NSLocalizedString(key, comment: "")
         }
+
         return string
     }
 
@@ -112,51 +131,36 @@ public class Wiz {
         return self.config != nil
     }
 
-    func uploadProjectFiles(_ filenames: [String]) {
-        if let project = self.project {
-            for filename in filenames {
-                let dotIndex = filename.lastIndex(of: ".") ?? filename.endIndex
-                let name = filename[..<dotIndex]
-                let ext = filename[dotIndex...]
-                if let resourceFilePath = Bundle.main.path(forResource: String(name), ofType: String(ext)),
-                    let fileData = try? Data(contentsOf: URL(fileURLWithPath: resourceFilePath)) {
-                    api.uploadProjectFile(project.id, filename: filename, fileData: fileData) { (uploaded, error) in
-
-                    }
-                }
-            }
-        }
-
-        Log.i("Initializing project")
-    }
-
-    private func notifyOfLanguageChange() {
+    private func notifyOfLanguageChange(_ languageCode: String) {
         self.globalLanguageChangeHandler?()
-        NotificationCenter.default.post(name: .WizLanguageChanged, object: nil, userInfo: [:])
+        NotificationCenter.default.post(name: .WizLanguageChanged, object: nil, userInfo: ["languageCode":languageCode])
     }
 
+    private func mappedLanguage(_ languageCode: String) -> String {
+        let mapper = LanguageMapper()
+        return mapper.mapLanguage(languageCode)
+    }
 }
 
 // MARK: - Caching
 extension Wiz {
 
-    private func createCachesDirectory() {
+    private func setupCaches() {
         FileUtils.createWizCachesDirectory()
     }
 
     private func saveCurrentProject() {
-           if let project = self.project {
-               project.saveToCache()
-           }
-       }
+        if let project = self.project {
+            project.saveToCache()
+        }
+    }
 
-       private func restoreFromCache() {
-           if let project = Project.initFromCache(), project.id == self.config?.projectId {
-               self.project = project
-               project.restoreFromCache()
-           } else {
-               self.project = nil
-           }
-       }
-
+    private func restoreFromCache() {
+        if let project = Project.initFromCache(), project.id == self.config?.projectId {
+            self.project = project
+            project.restoreFromCache()
+        } else {
+            self.project = nil
+        }
+    }
 }

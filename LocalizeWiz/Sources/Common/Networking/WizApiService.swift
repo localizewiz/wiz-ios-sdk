@@ -16,74 +16,83 @@ class WizApiService {
 
     init() {}
 
-    func getProject(_ projectId: String, completion: @escaping(Project?, WizError?) -> Void) {
+    func getProject(_ projectId: String, completion: @escaping(Result<Project, WizError>) -> Void) {
         let request = WizApiRequest.getProject(projectId: projectId)
 
-        networkService.sendRequest(request) { (result, error) in
-            if let error = error {
-                completion(nil, error)
-            } else {
-                if let data = result as? Data, let response = try? wizDecoder.decode(Project.self, from: data) {
-                    completion(response, nil)
+        networkService.sendRequest(request) { (result) in
+            switch result {
+            case .success(let data):
+                if let data = data, let project = try? wizDecoder.decode(Project.self, from: data) {
+                    completion(.success(project))
                 } else {
-                    completion(nil, WizError.unknowkError)
+                    completion(.failure(WizError.unknowkError))
                 }
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
 
-    func getProjectDetailsById(_ projectId: String, completion: @escaping(Project?, WizError?) -> Void) {
+    func getProjectDetailsById(_ projectId: String, completion: @escaping(Result<Project, WizError>) -> Void) {
         let request = WizApiRequest.getProjectDetails(projectId: projectId)
 
-        networkService.sendRequest(request) { (result, error) in
-            if let error = error {
-                completion(nil, error)
-            } else {
-                if let data = result as? Data, let response = try? wizDecoder.decode(Project.self, from: data) {
-                    completion(response, nil)
+        networkService.sendRequest(request) { (result) in
+            switch result {
+            case .success(let data):
+                if let data = data, let project = try? wizDecoder.decode(Project.self, from: data) {
+                    completion(.success(project))
                 } else {
-                    completion(nil, WizError.unknowkError)
+                    completion(.failure(WizError.unknowkError))
                 }
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
 
-    func getStringTranslations(_ projectId: String, fileId: String?, language: String, completion: @escaping([LocalizedString]?, Error?) -> Void) {
+    func getStringTranslations(_ projectId: String, fileId: String?, language: String, completion: @escaping(Result<[LocalizedString], Error>) -> Void) {
         let request = WizApiRequest.getStringTranslations(projectId: projectId, fileId: fileId, locale: language)
 
-        networkService.sendRequest(request) { (result, error) in
-            if let error = error {
-                completion(nil, error)
-            } else {
-                let json = try! JSONSerialization.jsonObject(with: result as! Data, options: .allowFragments)
-                Log.d("Json: \(json)")
-                let env = try! wizDecoder.decode(LocalizedStringEnvelope.self, from: result as! Data)
-                Log.d("env: \(env)")
-                if let data = result as? Data, let envelope = try? wizDecoder.decode(LocalizedStringEnvelope.self, from: data) {
-                    completion(envelope.strings, nil)
+        networkService.sendRequest(request) { (result) in
+            switch result {
+            case .success(let data):
+                if let data = data, let envelope = try? wizDecoder.decode(LocalizedStringEnvelope.self, from: data) {
+                    completion(.success(envelope.strings))
                 } else {
-                    completion(nil, WizError.unknowkError)
+                    completion(.failure(WizError.unknowkError))
                 }
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
 
-    func getProjectLanguages(_ projectId: String, completion: @escaping ([Language]?, Error?) -> Void) {
+    func getProjectLanguages(_ projectId: String, completion: @escaping (Result<[Language], WizError>) -> Void) {
         let request = WizApiRequest.getProjectLanguages(projectId: projectId)
 
-        networkService.sendRequest(request) { (result, error) in
-            if let error = error {
-                completion(nil, error)
-            } else {
-                let json = try! JSONSerialization.jsonObject(with: result as! Data, options: .allowFragments)
-                Log.d("Json: \(json)")
-                let env = try! wizDecoder.decode(LanguageEnvelope.self, from: result as! Data)
-                Log.d("env: \(env)")
-                if let data = result as? Data, let envelope = try? wizDecoder.decode(LanguageEnvelope.self, from: data) {
-                    completion(envelope.languages, nil)
+        networkService.sendRequest(request) { (result) in
+             switch result {
+            case .success(let data):
+                if let data = data, let envelope = try? wizDecoder.decode(LanguageEnvelope.self, from: data) {
+                    completion(.success(envelope.languages))
                 } else {
-                    completion(nil, WizError.unknowkError)
+                    completion(.failure(WizError.unknowkError))
                 }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func uploadProjectFile(_ projectId: String, filename: String, fileData: Data, completion: @escaping (Bool, Error?) -> Void) {
+        let request = WizApiRequest.uploadFile(projectId: projectId, fileName: filename, fileData: fileData, contentType: "text/plain")
+
+        networkService.sendRequest(request) { (result) in
+            switch result {
+            case .success:
+                completion(true, nil)
+            case .failure(let error):
+                completion(false, error)
             }
         }
     }

@@ -47,15 +47,6 @@ class SelectLanguageViewController: UIViewController {
             }
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     private func language(at indexPath: IndexPath) -> Language? {
         if let languages = self.languages, languages.count > indexPath.row {
@@ -65,12 +56,10 @@ class SelectLanguageViewController: UIViewController {
     }
 
     @objc private func updateStrings() {
-        self.mainQueue.async {
-            self.navigationItem.title = wiz.getString("Select A Language")
-            self.navigationItem.leftBarButtonItem?.title = wiz.getString("Cancel")
-            self.navigationItem.rightBarButtonItem?.title = wiz.getString("Save")
-            self.tableView.reloadData()
-        }
+        self.navigationItem.title = wiz.getString("Select A Language")
+        self.navigationItem.leftBarButtonItem?.title = wiz.getString("Cancel")
+        self.navigationItem.rightBarButtonItem?.title = wiz.getString("Save")
+        self.tableView.reloadData()
     }
 }
 
@@ -109,6 +98,11 @@ extension SelectLanguageViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageTableViewCell", for: indexPath)
         if let language = self.language(at: indexPath), let cell = cell as? LanguageTableViewCell {
             cell.language = language
+            if language == self.selectedLanguage {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
+            }
         }
         return cell
     }

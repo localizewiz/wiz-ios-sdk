@@ -24,3 +24,12 @@ class Cache: Codable {
         _cache.removeAll()
     }
 }
+
+extension Cache: CustomDebugStringConvertible {
+
+    public var debugDescription: String {
+        return _cache.map { (k, v) -> String in
+            "\(k) => \(v)"
+        }.joined(separator: "\n")
+    }
+}

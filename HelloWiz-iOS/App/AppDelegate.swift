@@ -9,7 +9,8 @@
 import UIKit
 import LocalizeWiz
 
-var wiz = Wiz.sharedInstance
+// Declare global instance of wiz
+let wiz = Wiz.sharedInstance
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,13 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let testApiKey = "wiz_3e1457d5f61c76c41c769f90a76f7888"
-        let testProjectId = "99340930464613842"
 
         let apiKey = "wiz_c44cbfd8d665b9b6db7c049fae4d1c9d"
-        let projectId = "16517129557771591"
+        let projectId = "161650533164123338"
 
-        wiz.configure(apiKey: testApiKey, projectId: testProjectId, language: "en")
+        // setup wiz. Must be called before any other wiz methods
+        wiz.setup(apiKey: apiKey, projectId: projectId)
+
+        // customize app ui
         AppStyle.initialize()
         return true
     }
@@ -41,7 +43,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
 

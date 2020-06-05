@@ -13,7 +13,7 @@ class LocalizedString: Codable {
     var id: String?
     var name: String
     var value: String
-    var machineTranslation: String?
+    var autoTranslation: String?
     var humanTranslation: String?
     var comments: String?
     var metadata: [String: String]?
@@ -33,5 +33,11 @@ class LocalizedString: Codable {
             return translation
         }
         return value
+    }
+}
+
+extension LocalizedString: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return "id=\(String(describing: id)), name=\(name), value=\(value), autoTranslation=\(String(describing: autoTranslation)), humanTranslation = \(String(describing: humanTranslation))"
     }
 }

@@ -66,7 +66,6 @@
                         <outlet property="answerLabel" destination="i14-mX-UD5" id="yu7-xF-3U1"/>
                         <outlet property="changeButton" destination="NFo-Fy-p1Q" id="LEM-oQ-3nO"/>
                         <outlet property="questionLabel" destination="bvI-7U-tXY" id="ZeR-1L-c7L"/>
-                        <segue destination="FhV-aL-nwJ" kind="presentation" id="2ev-yh-y3N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -199,7 +198,4 @@
             <point key="canvasLocation" x="1863.7681159420292" y="117.85714285714285"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="A5P-bX-alc"/>
-    </inferredMetricsTieBreakers>
 </document>

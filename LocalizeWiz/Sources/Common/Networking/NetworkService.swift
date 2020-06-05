@@ -10,6 +10,7 @@ import Foundation
 
 
 typealias NetworkCompletionHandler = (_ response: Any?, _ error: WizError?) -> Void
+typealias CompletionWithResult = (_ result: Result<Data?, WizError>) -> Void
 
 class NetworkService: NSObject {
 
@@ -19,7 +20,7 @@ class NetworkService: NSObject {
         return URLSession(configuration: configuration)
     }()
 
-    func sendRequest(_ request: UrlRequestConvertible, completion: @escaping NetworkCompletionHandler) -> Void {
+    func sendRequest(_ request: UrlRequestConvertible, completion: @escaping CompletionWithResult) -> Void {
 
         let urlRequest = request.toUrlRequest()
 //        if let authorization = AuthorizationRepository.shared.currentAuthorization {
@@ -35,24 +36,24 @@ class NetworkService: NSObject {
             if let error = error {
                 if let json = serializedResponse as? Json {
                    let appError = WizError.networkError(body: json)
-                    return completion(nil, appError)
+                    return completion(.failure(appError))
                 } else {
                     let appError = WizError.genericError(message: error.localizedDescription)
-                    return completion(nil, appError)
+                    return completion(.failure(appError))
                 }
             }
 
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                 if let json = serializedResponse as? Json, let errorJson = json["error"] as? Json {
                     let appError = WizError.networkError(body: errorJson)
-                    completion(nil, appError)
+                    completion(.failure(appError))
                 } else {
-                    completion(nil, WizError.unknowkError)
+                    completion(.failure(WizError.unknowkError))
                 }
                 return
             }
 
-            completion(data, nil)
+            completion(.success(data))
         }
         task.resume()
     }
