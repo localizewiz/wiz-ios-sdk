@@ -35,7 +35,7 @@ enum WizApiRequest {
     }
 
     var baseUrl: URL {
-        let realurl = "https://dev.api.localizewiz.com"
+        let realurl = "https://api.localizewiz.com"
         return URL(string: realurl)!
     }
 

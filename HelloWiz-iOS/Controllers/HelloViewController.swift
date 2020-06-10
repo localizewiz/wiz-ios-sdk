@@ -31,7 +31,7 @@ class HelloViewController: UIViewController {
     }
 
     private func loadJapanese() {
-        wiz.refreshLanguage("ja")
+        wiz.fetchStrings(languageCode: "ja")
     }
 
     @objc func updateStrings() {

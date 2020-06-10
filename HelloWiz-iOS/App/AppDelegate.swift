@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        let apiKey = "wiz_c44cbfd8d665b9b6db7c049fae4d1c9d"
-        let projectId = "161650533164123338"
+        let apiKey = "wiz_fa63b250438705bbeccf016361ffb602"
+        let projectId = "11795326214079573"
 
         // setup wiz. Must be called before any other wiz methods
         wiz.setup(apiKey: apiKey, projectId: projectId)

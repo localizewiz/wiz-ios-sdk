@@ -9,7 +9,10 @@
 import Foundation
 
 
-
+/// Entrypoint to Wiz SDK.
+///
+/// Use `Wiz.sharedInstance` to access commonly used methods and properties.
+///
 public class Wiz {
 
     public static let sharedInstance: Wiz = Wiz()
@@ -28,15 +31,23 @@ public class Wiz {
     internal private (set) var config: Config? = nil
 
     private lazy var api: WizApiService = WizApiService()
-    private var currentLanguageCode = Locale.current.languageCode ?? ""
+    private var currentLanguageCode = Locale.preferredLanguages.first ?? ""
     private var globalLanguageChangeHandler: (() -> Void)? = nil
-
+    private var currentBundle: Bundle? = nil
 
     private init() {}
 
-    public func setup(apiKey: String, projectId: String, language: String? = Locale.preferredLanguages.first, localizationFileNames: [String] = ["Localizable.strings"]) {
+    /// Setup the SDK.
+    ///
+    /// - Parameters:
+    ///     - apiKey: Required.  Your API key. If you do not already have one, get one at https://app.localizewiz.com
+    ///     - projectId: Id for your project
+    ///     - languageCode: The default language code. Once set `getString()` returns strings in this language.
+    ///     if the `languageCode` parameter is not set, the devices first preferred language is used.
+    ///
+    public func setup(apiKey: String, projectId: String, languageCode: String? = Locale.preferredLanguages.first, localizationFileNames: [String] = ["Localizable.strings"]) {
 
-        Log.d("User language is: \(String(describing: language))")
+        Log.d("User language is: \(String(describing: languageCode))")
 
         guard !apiKey.isEmpty else {
             Log.s("Invalid apiKey: \(apiKey)")
@@ -47,7 +58,9 @@ public class Wiz {
             return
         }
 
-        let language = language ?? self.currentLanguageCode
+        self.currentBundle = Bundle.main
+
+        let language = languageCode ?? self.currentLanguageCode
         self.currentLanguageCode = self.mappedLanguage(language)
         self.setupCaches()
         
@@ -79,13 +92,22 @@ public class Wiz {
         }
     }
 
+    /// Refresh localizations
+    ///
+    /// Fetch the string translations for the current language
+    ///
     public func refresh() {
         let languageCode = self.currentLanguageCode
 
-        self.refreshLanguage(languageCode)
+        self.fetchStrings(languageCode: languageCode)
     }
 
-    public func refreshLanguage(_ languageCode: String) {
+    /// Fetch strings for given language
+    ///
+    /// - Parameters:
+    ///     - languageCode: The `ISO-639-1` language to fetch strings for.
+    ///
+    public func fetchStrings(languageCode: String) {
         if let project = self.project {
             api.getStringTranslations(project.id, fileId: nil, language: languageCode) { result in
                 switch result {
@@ -103,6 +125,7 @@ public class Wiz {
 
     public func setLanguage(_ languageCode: String, completion handler: (Bool) -> Void) {
         self.currentLanguageCode = languageCode
+        self.changeBundle(languageCode)
         refresh()
     }
 
@@ -112,22 +135,39 @@ public class Wiz {
 
     // MARK:- Convenience methods
 
+    /// Get localized string for key
+    ///
+    /// Retrieves the localized string from the project.
+    /// - Parameters:
+    ///     - key: The
+    /// - Returns: The string returned is the localizaed variant of string in the device's current preferred language.
+    /// If a string for the key is not found in the project, this method looks up the key using `NSLocalizedString(key)` and returns the localized string if found.
+    /// If a the string is not found using `NSLocalizedString`, the `key` requested is returned.
+    ///
     public func getString(_ key: String) -> String {
         return self.getString(key, languageCode: self.currentLanguageCode)
     }
 
+    /// Gets string in a given language
+    ///
+    /// - Returns: String localized in the specified language if available. If localization is not available, the key passed in is returned.
+    /// - Precondition: `wiz.fetchStrings(languageCode)` must be called before `getString(languageCode)` is called.
+    ///
     public func getString(_ key: String, languageCode: String) -> String {
         var string: String = self.project?.getString(key, inLanguage: languageCode) ?? ""
 
         // fallback
         if string.isEmpty {
+            self.currentBundle?.localizedString(forKey: key, value: nil, table: nil)
+        }
+        if string.isEmpty, self.currentBundle != Bundle.main {
             string = NSLocalizedString(key, comment: "")
         }
 
         return string
     }
 
-    var isConfigured: Bool {
+    private var isConfigured: Bool {
         return self.config != nil
     }
 
@@ -139,6 +179,12 @@ public class Wiz {
     private func mappedLanguage(_ languageCode: String) -> String {
         let mapper = LanguageMapper()
         return mapper.mapLanguage(languageCode)
+    }
+
+    private func changeBundle(_ languageCode: String) {
+        if let bundlePath = Bundle.main.path(forResource: languageCode, ofType: "lproj"), let bundle = Bundle(path: bundlePath) {
+            self.currentBundle = bundle
+        }
     }
 }
 

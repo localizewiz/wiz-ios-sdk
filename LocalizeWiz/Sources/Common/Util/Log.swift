@@ -33,12 +33,12 @@ class Log {
     }
 
     static var logIndicators: [LogLevel: String] = [
+        .s : "[🔥]",
         .e : "[‼️]",
         .w : "[⚠️]",
         .i : "[ℹ️]",
         .d : "[💬]",
         .v : "[🔬]",
-        .s : "[🔥]"
     ]
 
     static func setLogLevel(_ logLevel: LogLevel) {
@@ -71,7 +71,7 @@ class Log {
 
     private static func log(_ object: Any, level: LogLevel) {
         if level.rawValue <= self.currentLogLevel.rawValue {
-            print("\(Date().toString()) - [\(logPrefix)] - \(logIndicators[level]!) => \(String(describing: object))")
+            debugPrint("\(Date().toString()) - [\(logPrefix)] - \(logIndicators[level]!) => \(String(describing: object))")
         }
     }
 }

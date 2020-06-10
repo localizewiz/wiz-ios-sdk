@@ -20,9 +20,6 @@ it, simply add the following line to your Podfile:
 pod 'LocalizeWiz'
 ```
 
-## Author
-
-Inn0vative1, john.warmann@gmail.com
 
 ## License
 
