@@ -8,20 +8,20 @@
 
 import Foundation
 
-class LocalizedString: Codable {
+public class LocalizedString: Codable {
     
-    var id: String?
-    var name: String
-    var value: String
-    var autoTranslation: String?
-    var humanTranslation: String?
-    var comments: String?
-    var metadata: [String: String]?
-    var translatable: Bool?
-    var locale: String?
-    var created: Date?
-    var updated: Date?
-    var translations: [String: String]?
+    public var id: String?
+    public var name: String
+    public var value: String
+    public var autoTranslation: String?
+    public var humanTranslation: String?
+    public var comments: String?
+    public var metadata: [String: String]?
+    public var translatable: Bool?
+    public var locale: String?
+    public var created: Date?
+    public var updated: Date?
+    public var translations: [String: String]?
 
     func getValue(forLanguage languageCode: String? = nil) -> String {
         guard languageCode != nil else {
@@ -37,7 +37,7 @@ class LocalizedString: Codable {
 }
 
 extension LocalizedString: CustomDebugStringConvertible {
-    var debugDescription: String {
+    public var debugDescription: String {
         return "id=\(String(describing: id)), name=\(name), value=\(value), autoTranslation=\(String(describing: autoTranslation)), humanTranslation = \(String(describing: humanTranslation))"
     }
 }

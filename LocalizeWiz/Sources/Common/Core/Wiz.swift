@@ -35,6 +35,9 @@ public class Wiz {
     private var globalLanguageChangeHandler: (() -> Void)? = nil
     private var currentBundle: Bundle? = nil
 
+    private let notifier = Notifier()
+    private var observers = NSHashTable<AnyObject>(options: .weakMemory)
+
     private init() {}
 
     /// Setup the SDK.
@@ -173,7 +176,7 @@ public class Wiz {
 
     private func notifyOfLanguageChange(_ languageCode: String) {
         self.globalLanguageChangeHandler?()
-        NotificationCenter.default.post(name: .WizLanguageChanged, object: nil, userInfo: ["languageCode":languageCode])
+        self.notify(ofEvent: .languageChanged(languageCode: languageCode))
     }
 
     private func mappedLanguage(_ languageCode: String) -> String {
@@ -205,8 +208,34 @@ extension Wiz {
         if let project = Project.initFromCache(), project.id == self.config?.projectId {
             self.project = project
             project.restoreFromCache()
+        } else if let projectId = self.config?.projectId {
+            self.project = Project(withId: projectId)
         } else {
             self.project = nil
         }
     }
+}
+
+extension Wiz {
+
+    public func registerChangeObserver(_ observer: WizLocalizationChangeObzerver) {
+        return self.notifier.addObserver(observer)
+    }
+
+    public func unregisterChangeOhangeObserver(_ observer: WizLocalizationChangeObzerver) {
+        self.notifier.removeObserver(observer)
+    }
+
+    func notify(ofEvent event: WizEvent) {
+        self.notifier.notifyObservers(ofEvent: event)
+    }
+}
+
+public enum WizEvent {
+    case languageChanged(languageCode: String)
+    case stringsFetched(languageCode: String, strings: [LocalizedString])
+}
+
+public protocol WizLocalizationChangeObzerver: class {
+    func handleEvent(_ event: WizEvent)
 }

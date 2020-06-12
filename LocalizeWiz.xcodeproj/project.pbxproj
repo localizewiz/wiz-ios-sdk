@@ -67,8 +67,11 @@
 		453C34CA23DA942300AC5CA8 /* LocalizedStringEnvelope.json in Resources */ = {isa = PBXBuildFile; fileRef = 453C34C923DA942300AC5CA8 /* LocalizedStringEnvelope.json */; };
 		456A7AB923F8D4C700FFB991 /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A7AB823F8D4C700FFB991 /* NSNotification.swift */; };
 		456A7ABB23F9BBA900FFB991 /* Cacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456A7ABA23F9BBA900FFB991 /* Cacheable.swift */; };
+		45A1937724917F1500FE5F60 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A1937624917F1500FE5F60 /* Observable.swift */; };
+		45A1937924917F4000FE5F60 /* ObserverToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A1937824917F4000FE5F60 /* ObserverToken.swift */; };
 		45C818912485ED9000836E5B /* LanguageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C818902485ED9000836E5B /* LanguageMapper.swift */; };
 		45C81893248F33F900836E5B /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 45C81892248F33F900836E5B /* CHANGELOG.md */; };
+		45DC752F249325DD00CDC707 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DC752E249325DD00CDC707 /* Notifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,8 +154,11 @@
 		453C34C923DA942300AC5CA8 /* LocalizedStringEnvelope.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LocalizedStringEnvelope.json; sourceTree = "<group>"; };
 		456A7AB823F8D4C700FFB991 /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
 		456A7ABA23F9BBA900FFB991 /* Cacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cacheable.swift; sourceTree = "<group>"; };
+		45A1937624917F1500FE5F60 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		45A1937824917F4000FE5F60 /* ObserverToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverToken.swift; sourceTree = "<group>"; };
 		45C818902485ED9000836E5B /* LanguageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageMapper.swift; sourceTree = "<group>"; };
 		45C81892248F33F900836E5B /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		45DC752E249325DD00CDC707 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +378,9 @@
 				453C34AD23D7D86500AC5CA8 /* Log.swift */,
 				452A098F23BEC39200A78574 /* Storage.swift */,
 				4502D6BF23C159CD00AD04E7 /* StringsCaches.swift */,
+				45A1937624917F1500FE5F60 /* Observable.swift */,
+				45A1937824917F4000FE5F60 /* ObserverToken.swift */,
+				45DC752E249325DD00CDC707 /* Notifier.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -665,6 +674,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				453C34B023D7D92600AC5CA8 /* DateExtensions.swift in Sources */,
+				45DC752F249325DD00CDC707 /* Notifier.swift in Sources */,
 				452A097E23BC16CD00A78574 /* Json.swift in Sources */,
 				45C818912485ED9000836E5B /* LanguageMapper.swift in Sources */,
 				453C34AE23D7D86500AC5CA8 /* Log.swift in Sources */,
@@ -672,6 +682,7 @@
 				452A098423BEA41400A78574 /* Cache.swift in Sources */,
 				452A097A23BBF98B00A78574 /* NetworkService.swift in Sources */,
 				452A098823BEAAFE00A78574 /* WizApiService.swift in Sources */,
+				45A1937924917F4000FE5F60 /* ObserverToken.swift in Sources */,
 				452A098E23BEBD0600A78574 /* FileUtils.swift in Sources */,
 				4502D6C023C159CD00AD04E7 /* StringsCaches.swift in Sources */,
 				452A099723BED18400A78574 /* LocalizedStringEnvelope.swift in Sources */,
@@ -691,6 +702,7 @@
 				452A098123BC178A00A78574 /* Wiz.swift in Sources */,
 				453C345223D7CD5F00AC5CA8 /* Views.swift in Sources */,
 				452A097123B9255500A78574 /* Project.swift in Sources */,
+				45A1937724917F1500FE5F60 /* Observable.swift in Sources */,
 				456A7ABB23F9BBA900FFB991 /* Cacheable.swift in Sources */,
 				452A099023BEC39200A78574 /* Storage.swift in Sources */,
 				452A099423BECCEC00A78574 /* LocalizedString.swift in Sources */,

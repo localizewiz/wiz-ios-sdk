@@ -8,15 +8,17 @@
 
 import Foundation
 
+/// Manage Project operations
+///
 public class Project: Codable {
 
     public var id: String
-    public var name: String
-    public var description: String
-    public var languageId: String
-    public var platform: String
-    public var created: Date
-    public var updated: Date
+    public var name: String?
+    public var description: String?
+    public var languageId: String?
+    public var platform: String?
+    public var created: Date?
+    public var updated: Date?
     public var iconUrl: String?
     public var workspaceId: String?
     public var workspace: Workspace?
@@ -34,6 +36,10 @@ public class Project: Codable {
         Log.i("Initializing project")
     }
 
+    init(withId id: String) {
+        self.id = id
+    }
+
     static func readFromCache() -> Project? {
         return nil
     }
@@ -41,6 +47,18 @@ public class Project: Codable {
 
     // MARK: Dealing with strings
 
+    /// Get string translation from project
+    ///
+    /// Gets the localized string for specified `key`.  If `key` does not exist in wiz project, this method does not fall back to use `NSLocalizedString()`.
+    /// To have the fallback behavior, use `wiz.getString(key)` instead.
+    ///
+    ///  - Parameters:
+    ///     - key: the Key to get
+    ///     - languageCode: iso639-1 language code for localization to fetch.
+    ///
+    /// - Precondition: If the `languageCode` is the project's current language code, the localizations would already be cached on the device.
+    /// To fetch localizations for another language, `wiz.fetchStrings(languageCode)` must be called first to fetch the localizations.
+    ///
     public func getString(_ key: String, inLanguage languageCode: String) -> String? {
         return localizations.getString(key, inLanguage: languageCode)
     }
@@ -65,7 +83,7 @@ public class Project: Codable {
 
 extension Project: CustomDebugStringConvertible {
     public var debugDescription: String {
-        return "{id: \(id), name: \(name), platform: \(platform), created: \(created), updated: \(updated)}"
+        return "{id: \(id), name: \(String(describing: name)), platform: \(String(describing: platform)), created: \(String(describing: created)), updated: \(String(describing: updated))}"
     }
 }
 
