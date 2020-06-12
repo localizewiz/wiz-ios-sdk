@@ -17,17 +17,20 @@ class HelloViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        wiz.registerChangeObserver(self)
+
         // Do any additional setup after loading the view.
 
         // Load Japanese strings explicitly since we want to show Japanese translation for "Cat".
         // Translations for the current locale are automatically loaded
         self.loadJapanese()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateStrings), name: NSNotification.Name.WizLanguageChanged, object: nil)
+        self.updateStrings()
+
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.updateStrings()
+    deinit {
+        // Do not forget to unregister your change observers
+        wiz.unregisterChangeOhangeObserver(self)
     }
 
     private func loadJapanese() {
@@ -43,3 +46,14 @@ class HelloViewController: UIViewController {
     }
 }
 
+extension HelloViewController: WizLocalizationChangeObzerver {
+    func handleEvent(_ event: WizEvent) {
+        switch event {
+        case .languageChanged(_):
+            self.updateStrings()
+            break
+        default:
+            break
+        }
+    }
+}

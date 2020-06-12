@@ -116,9 +116,7 @@ public class Wiz {
                 switch result {
                 case .success(let strings):
                     self.project?.saveStrings(strings, forLanguage: languageCode)
-                    self.mainQueue.async {
-                        self.notifyOfLanguageChange(languageCode)
-                    }
+                    self.notifyOfLanguageChange(languageCode)
                 case .failure(let error):
                     Log.e(error)
                 }
@@ -126,7 +124,7 @@ public class Wiz {
         }
     }
 
-    public func setLanguage(_ languageCode: String, completion handler: (Bool) -> Void) {
+    public func setLanguage(_ languageCode: String) {
         self.currentLanguageCode = languageCode
         self.changeBundle(languageCode)
         refresh()
@@ -175,8 +173,10 @@ public class Wiz {
     }
 
     private func notifyOfLanguageChange(_ languageCode: String) {
-        self.globalLanguageChangeHandler?()
-        self.notify(ofEvent: .languageChanged(languageCode: languageCode))
+        self.mainQueue.async {
+            self.globalLanguageChangeHandler?()
+            self.notify(ofEvent: .languageChanged(languageCode: languageCode))
+        }
     }
 
     private func mappedLanguage(_ languageCode: String) -> String {

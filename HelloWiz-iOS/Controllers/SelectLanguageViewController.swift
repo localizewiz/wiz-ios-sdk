@@ -23,9 +23,12 @@ class SelectLanguageViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.reloadData()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(updateStrings), name: NSNotification.Name.WizLanguageChanged, object: nil)
+        wiz.registerChangeObserver(self)
+    }
 
-        // Do any additional setup after loading the view.
+    deinit {
+        // Do not forget to unregister your change observers
+        wiz.unregisterChangeOhangeObserver(self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -39,12 +42,7 @@ class SelectLanguageViewController: UIViewController {
 
     @IBAction private func save(_ sender: Any) {
         if let language = self.selectedLanguage {
-            wiz.setLanguage(language.isoCode) { (languageSet) in
-                self.updateStrings()
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2000)) {
-                    self.dismiss(self)
-                }
-            }
+            wiz.setLanguage(language.isoCode)
         }
     }
 
@@ -105,5 +103,11 @@ extension SelectLanguageViewController: UITableViewDataSource {
             }
         }
         return cell
+    }
+}
+
+extension SelectLanguageViewController: WizLocalizationChangeObzerver {
+    func handleEvent(_ event: WizEvent) {
+        self.updateStrings()
     }
 }
