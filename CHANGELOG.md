@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.0-beta-1] - 2020-06-10
+## [0.1.0-beta-1] - 2020-06-15
 
 ### Added
 - SDK initialization

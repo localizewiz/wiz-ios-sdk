@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name                = 'LocalizeWiz'
-  s.version             = '0.1.0-beta'
+  s.version             = '0.1.0-beta1'
   s.summary             = 'Real time app localization.'
   s.swift_version       = '5.0'
 
@@ -20,7 +20,7 @@ LocalizeWiz is a cloud based localization platform that automates the localizati
   # s.screenshots       = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license             = { :type => 'MIT', :file => 'LICENSE' }
   s.author              = { 'LocalizeWiz' => 'https://localizewiz.com' }
-  s.source              = { :git => 'https://github.com/LocalizeWiz/localizewiz-ios-sdk.git', :tag => s.version.to_s }
+  s.source              = { :git => 'https://github.com/localizewiz/wiz-ios-sdk.git', :tag => s.version.to_s }
   s.requires_arc        = true
   s.module_name         = 'LocalizeWiz'
   s.ios.deployment_target = '10.0'
@@ -38,5 +38,6 @@ LocalizeWiz is a cloud based localization platform that automates the localizati
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.ios.framework  = 'UIKit'
+  s.tvos.framework = 'TVUIKit'
   s.osx.framework  = 'AppKit'
 end
