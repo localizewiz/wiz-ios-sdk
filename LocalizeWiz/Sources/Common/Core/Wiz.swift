@@ -159,7 +159,7 @@ public class Wiz {
 
         // fallback
         if string.isEmpty {
-            self.currentBundle?.localizedString(forKey: key, value: nil, table: nil)
+            string = self.currentBundle?.localizedString(forKey: key, value: nil, table: nil) ?? ""
         }
         if string.isEmpty, self.currentBundle != Bundle.main {
             string = NSLocalizedString(key, comment: "")
