@@ -1,9 +1,8 @@
 # LocalizeWiz iOS SDK
 
 [![Version](https://img.shields.io/cocoapods/v/LocalizeWiz.svg?style=flat)](https://cocoapods.org/pods/LocalizeWiz)
-[![License](https://img.shields.io/cocoapods/l/LocalizeWiz.svg?style=flat)](https://cocoapods.org/pods/LocalizeWiz)
+[![License](https://img.shields.io/cocoapods/l/LocalizeWiz.svg?style=flat)](https://img.shields.io/github/license/localizewiz/wiz-ios-sdk?style=plastic)
 [![Platform](https://img.shields.io/cocoapods/p/LocalizeWiz.svg?style=flat)](https://cocoapods.org/pods/LocalizeWiz)
-
 
 The LocalizeWiz iOS SDK enables you to seamlessly integrate real time cloud based localizations into your iOS apps.
 
