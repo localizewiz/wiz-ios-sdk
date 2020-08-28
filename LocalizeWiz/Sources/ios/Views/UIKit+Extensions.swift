@@ -117,6 +117,14 @@ extension UINavigationItem: WizLocalizable {
         }
     }
 
+    private func wizLocalizeTitle() {
+        if let localizeTextKey = localizeTextKey {
+            title = wiz.getString(localizeTextKey)
+        }
+    }
+
+    // UINavigationItem.prompt is not available on tvOS
+    #if os(iOS)
     @IBInspectable public var localizePromptKey: String? {
         get {
             return localizedValueFor(key: &wizStorageKey1)
@@ -127,21 +135,18 @@ extension UINavigationItem: WizLocalizable {
         }
     }
 
-    public func wizLocalize() {
-        wizLocalizeTitle()
-        wizLocalizePrompt()
-    }
-
-    private func wizLocalizeTitle() {
-        if let localizeTextKey = localizeTextKey {
-            title = wiz.getString(localizeTextKey)
-        }
-    }
-
     private func wizLocalizePrompt() {
         if let localizePromptKey = localizePromptKey {
             prompt = wiz.getString(localizePromptKey)
         }
+    }
+    #endif
+
+    public func wizLocalize() {
+        wizLocalizeTitle()
+        #if os(iOS)
+        wizLocalizePrompt()
+        #endif
     }
 }
 
