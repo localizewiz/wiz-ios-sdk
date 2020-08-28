@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name                = 'LocalizeWiz'
-  s.version             = '0.1.0-beta1'
+  s.version             = '0.3.0'
   s.summary             = 'Real time app localization.'
   s.swift_version       = '5.0'
 
