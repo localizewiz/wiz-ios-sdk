@@ -20,6 +20,9 @@ class SelectLanguageViewController: UIViewController {
         super.viewDidLoad()
         self.languages = wiz.project?.languages
 
+        if let sourceLanguage = wiz.project?.language {
+            self.languages?.append(sourceLanguage)
+        }
         self.tableView.tableFooterView = UIView()
         self.tableView.reloadData()
 
@@ -57,7 +60,13 @@ class SelectLanguageViewController: UIViewController {
         self.navigationItem.title = wiz.getString("Select A Language")
         self.navigationItem.leftBarButtonItem?.title = wiz.getString("Cancel")
         self.navigationItem.rightBarButtonItem?.title = wiz.getString("Save")
+        let selectedIndexPath = tableView.indexPathForSelectedRow
+
         self.tableView.reloadData()
+
+        if let selectedIndexPath = selectedIndexPath {
+            tableView.selectRow(at: selectedIndexPath, animated: false, scrollPosition: .middle)
+        }
     }
 }
 
@@ -68,7 +77,6 @@ extension SelectLanguageViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .checkmark
-
         self.selectedLanguage = self.language(at: indexPath)
     }
 
