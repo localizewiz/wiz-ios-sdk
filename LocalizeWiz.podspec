@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name                = 'LocalizeWiz'
-  s.version             = '0.3.0'
+  s.version             = '0.4.0'
   s.summary             = 'Real time app localization.'
   s.swift_version       = '5.0'
 
@@ -27,16 +27,15 @@ LocalizeWiz is a cloud based localization platform that automates the localizati
   s.tvos.deployment_target = '10.0'
   s.osx.deployment_target = '10.13'
 
-  s.source_files        = 'LocalizeWiz/Sources/Common/**/*.swift'
-  s.ios.source_files    = 'LocalizeWiz/Sources/Common/**/*.swift', 'LocalizeWiz/Sources/ios/**/*.swift'
-  s.tvos.source_files   = 'LocalizeWiz/Sources/Common/**/*.swift', 'LocalizeWiz/Sources/ios/**/*.swift'
-  s.osx.source_files    = 'LocalizeWiz/Sources/Common/**/*.swift', 'LocalizeWiz/Sources/osx/**/*.swift'
+  s.source_files        = 'Sources/LocalizeWiz/Common/**/*.swift'
+  s.ios.source_files    = 'Sources/LocalizeWiz/Common/**/*.swift', 'Sources/LocalizeWiz/ios/**/*.swift'
+  s.tvos.source_files   = 'Sources/LocalizeWiz/Common/**/*.swift', 'Sources/LocalizeWiz/ios/**/*.swift'
+  s.osx.source_files    = 'Sources/LocalizeWiz/Common/**/*.swift', 'Sources/LocalizeWiz/osx/**/*.swift'
   
   # s.resource_bundles  = {
   #   'LocalizeWiz' => ['LocalizeWiz/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.ios.framework  = 'UIKit'
   s.tvos.framework = 'TVUIKit'
   s.osx.framework  = 'AppKit'
