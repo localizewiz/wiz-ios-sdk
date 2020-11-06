@@ -216,13 +216,14 @@ extension Wiz {
     }
 }
 
+/// Observing language changes
 extension Wiz {
 
-    public func registerChangeObserver(_ observer: WizLocalizationChangeObzerver) {
+    public func addChangeObserver(_ observer: WizLocalizationChangeObzerver) {
         return self.notifier.addObserver(observer)
     }
 
-    public func unregisterChangeOhangeObserver(_ observer: WizLocalizationChangeObzerver) {
+    public func removeChangeObserver(_ observer: WizLocalizationChangeObzerver) {
         self.notifier.removeObserver(observer)
     }
 

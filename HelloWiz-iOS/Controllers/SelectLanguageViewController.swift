@@ -26,12 +26,12 @@ class SelectLanguageViewController: UIViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.reloadData()
 
-        wiz.registerChangeObserver(self)
+        wiz.addChangeObserver(self)
     }
 
     deinit {
         // Do not forget to unregister your change observers
-        wiz.unregisterChangeOhangeObserver(self)
+        wiz.removeChangeObserver(self)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -56,6 +56,9 @@ carthage update
 ### Swift Package Manager
 You can also install the LocalizeWiz SDK with Swift Package Manager (SPM).
 
+In the Xcode menu, simply select File -> Swift Packages -> Add Package Dependency.
+Then paste this URL into the space provided: https://github.com/localizewiz/wiz-ios-sdk
+
 ## Initialization
 
 Once the LocalizeWiz SDK is installed, the next thing to do is to initialize it in your project.

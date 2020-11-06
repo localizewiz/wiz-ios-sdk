@@ -17,7 +17,7 @@ class HelloViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        wiz.registerChangeObserver(self)
+        wiz.addChangeObserver(self)
 
         // Do any additional setup after loading the view.
 
@@ -30,7 +30,7 @@ class HelloViewController: UIViewController {
 
     deinit {
         // Do not forget to unregister your change observers
-        wiz.unregisterChangeOhangeObserver(self)
+        wiz.removeChangeObserver(self)
     }
 
     private func loadJapanese() {
