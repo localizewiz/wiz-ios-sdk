@@ -56,6 +56,26 @@ carthage update
 ### Swift Package Manager
 You can also install the LocalizeWiz SDK with Swift Package Manager (SPM).
 
+## Building from Source
+
+A helper script at the repo root wraps the common `xcodebuild` invocations.
+Make it executable once:
+
+```shell
+chmod +x build.sh
+```
+
+Then build for the platform you need:
+
+| Command | Target |
+|---------|--------|
+| `./build.sh ios-sim` | iOS Simulator |
+| `./build.sh ios` | iOS device (no signing required) |
+| `./build.sh mac` | macOS |
+| `./build.sh tvos` | tvOS device (no signing required) |
+| `./build.sh tvos-sim` | tvOS Simulator |
+| `./build.sh spm` | Swift Package Manager (`swift build`) |
+
 ## Initialization
 
 Once the LocalizeWiz SDK is installed, the next thing to do is to initialize it in your project.
