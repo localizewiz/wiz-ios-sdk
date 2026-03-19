@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Language: Codable {
+public struct Language: Codable, Sendable {
     
     public var id: String
     public var isoCode: String

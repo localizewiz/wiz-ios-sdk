@@ -8,7 +8,9 @@
 
 import Foundation
 
-class StringsCaches {
+// Actor-isolated cache manager for localized strings.
+// All mutations happen sequentially inside the actor, eliminating data races.
+actor StringsCaches {
 
     static let instance: StringsCaches = StringsCaches()
 
@@ -18,14 +20,12 @@ class StringsCaches {
 
     func getString(_ key: String, inLanguage languageCode: String) -> String? {
         if let cache = caches[languageCode] {
-
             return cache.get(key)?.humanTranslation
         }
-
         return nil
     }
 
-    func saveLocalizedStrings(_ strings: [LocalizedString], forLanguage languageCode: String) -> Void {
+    func saveLocalizedStrings(_ strings: [LocalizedString], forLanguage languageCode: String) {
         let cache = Cache()
         for string in strings {
             cache.set(string, forKey: string.name)
@@ -38,7 +38,7 @@ class StringsCaches {
         }
     }
 
-    func restoreLocalizedStrings(forLangauge languageCode: String) {
+    func restoreLocalizedStrings(forLanguage languageCode: String) {
         if let cacheUrlForLanguage = self.cacheUrl(forLanguage: languageCode),
             let data = try? Data(contentsOf: cacheUrlForLanguage),
             let cache = try? JSONDecoder.wizDecoder.decode(Cache.self, from: data) {
@@ -46,7 +46,7 @@ class StringsCaches {
         }
     }
 
-    func cache(forLanguage languageCode: String)  -> Cache? {
+    func cache(forLanguage languageCode: String) -> Cache? {
         return caches[languageCode]
     }
 
@@ -65,9 +65,6 @@ class StringsCaches {
     }
 
     func cacheUrl(forLanguage languageCode: String) -> URL? {
-        if let url = FileUtils.wizCachesDirectoryUrl()?.appendingPathComponent("StringCaches-\(languageCode)") {
-            return url
-        }
-        return nil
+        return FileUtils.wizCachesDirectoryUrl()?.appendingPathComponent("StringCaches-\(languageCode)")
     }
 }

@@ -22,9 +22,8 @@ class Notifier: Observable {
     }
 
     func notifyObservers(ofEvent event: WizEvent) {
-        self.observers.allObjects.forEach { (j) in
-            (j as? WizLocalizationChangeObzerver)?.handleEvent(event)
-        }
+        // Superseded by Wiz actor's direct observer management (Wiz.notifyObservers).
+        // Notifier is retained for source compatibility but is no longer called.
     }
 
     public func registerChangeObserver(_ observer: WizLocalizationChangeObzerver) {
