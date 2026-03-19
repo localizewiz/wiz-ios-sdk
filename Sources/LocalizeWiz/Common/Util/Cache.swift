@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Cache: Codable {
+final class Cache: Codable, @unchecked Sendable {
 
     private var _cache: [String: LocalizedString] = [:]
 

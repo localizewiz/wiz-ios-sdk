@@ -39,10 +39,8 @@ enum WizApiRequest {
         return URL(string: realurl)!
     }
 
-    var headers: [String: String] {
-        guard let config = Wiz.sharedInstance.config else { return [:] }
-        return ["x-api-key": config.apiKey]
-    }
+    // Auth header is injected by WizApiService; this enum doesn't reach into the Wiz actor.
+    var headers: [String: String] { [:] }
 
     var url: URL {
         switch self {
@@ -116,7 +114,7 @@ enum WizApiRequest {
 
         // 2
         let lineTwo = "Content-Disposition: form-data; name=\"file\"; filename=\"\(fileName)\"\r\n"
-        NSLog(lineTwo)
+        print(lineTwo)
         fullData.append(lineTwo.data(
             using: String.Encoding.utf8,
             allowLossyConversion: false)!)

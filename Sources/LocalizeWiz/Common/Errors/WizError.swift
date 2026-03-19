@@ -8,7 +8,9 @@
 
 import Foundation
 
-public enum WizError: Error {
+// @unchecked Sendable: networkError carries [String: Any] from raw JSON parsing.
+// Phase 2 will replace this with a typed error hierarchy.
+public enum WizError: Error, @unchecked Sendable {
     
     case genericError(message: String)
     case networkError(body: [String: Any])

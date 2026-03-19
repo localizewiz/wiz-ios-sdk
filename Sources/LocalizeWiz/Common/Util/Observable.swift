@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Observable: class {
+protocol Observable: AnyObject {
 
     associatedtype Observer
 

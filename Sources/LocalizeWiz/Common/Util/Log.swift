@@ -11,8 +11,8 @@ import Foundation
 class Log {
 
     private static let logPrefix: String = "LocalizeWiz"
-    private static var dateFormat = "yyyy-MM-dd hh:mm:ss.SSS"
-    private static var currentLogLevel: LogLevel = .v
+    private static let dateFormat = "yyyy-MM-dd hh:mm:ss.SSS"
+    nonisolated(unsafe) static var currentLogLevel: LogLevel = .v
 
     static var dateFormatter: DateFormatter {
        let formatter = DateFormatter()
@@ -32,7 +32,7 @@ class Log {
         case v          // verbose
     }
 
-    static var logIndicators: [LogLevel: String] = [
+    static let logIndicators: [LogLevel: String] = [
         .s : "[🔥]",
         .e : "[‼️]",
         .w : "[⚠️]",

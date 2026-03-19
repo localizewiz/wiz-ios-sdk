@@ -10,16 +10,19 @@ import Foundation
 
 let wizDecoder = JSONDecoder.wizDecoder
 
-class WizApiService {
+// Phase 2 will replace this with a Google Translate + local cache approach.
+// @unchecked Sendable: owns only a NetworkService (itself @unchecked Sendable).
+final class WizApiService: @unchecked Sendable {
 
-    private let networkService: NetworkService = NetworkService()
+    private let networkService = NetworkService()
+
+    // Set by Wiz actor during setup() so requests carry the correct auth header.
+    var apiKey: String = ""
 
     init() {}
 
-    func getProject(_ projectId: String, completion: @escaping(Result<Project, WizError>) -> Void) {
-        let request = WizApiRequest.getProject(projectId: projectId)
-
-        networkService.sendRequest(request) { (result) in
+    func getProject(_ projectId: String, completion: @escaping @Sendable (Result<Project, WizError>) -> Void) {
+        send(.getProject(projectId: projectId)) { (result) in
             switch result {
             case .success(let data):
                 if let data = data, let project = try? wizDecoder.decode(Project.self, from: data) {
@@ -33,10 +36,8 @@ class WizApiService {
         }
     }
 
-    func getProjectDetailsById(_ projectId: String, completion: @escaping(Result<Project, WizError>) -> Void) {
-        let request = WizApiRequest.getProjectDetails(projectId: projectId)
-
-        networkService.sendRequest(request) { (result) in
+    func getProjectDetailsById(_ projectId: String, completion: @escaping @Sendable (Result<Project, WizError>) -> Void) {
+        send(.getProjectDetails(projectId: projectId)) { (result) in
             switch result {
             case .success(let data):
                 if let data = data, let project = try? wizDecoder.decode(Project.self, from: data) {
@@ -50,10 +51,8 @@ class WizApiService {
         }
     }
 
-    func getStringTranslations(_ projectId: String, fileId: String?, language: String, completion: @escaping(Result<[LocalizedString], Error>) -> Void) {
-        let request = WizApiRequest.getStringTranslations(projectId: projectId, fileId: fileId, locale: language)
-
-        networkService.sendRequest(request) { (result) in
+    func getStringTranslations(_ projectId: String, fileId: String?, language: String, completion: @escaping @Sendable (Result<[LocalizedString], any Error>) -> Void) {
+        send(.getStringTranslations(projectId: projectId, fileId: fileId, locale: language)) { (result) in
             switch result {
             case .success(let data):
                 if let data = data, let envelope = try? wizDecoder.decode(LocalizedStringEnvelope.self, from: data) {
@@ -67,11 +66,9 @@ class WizApiService {
         }
     }
 
-    func getProjectLanguages(_ projectId: String, completion: @escaping (Result<[Language], WizError>) -> Void) {
-        let request = WizApiRequest.getProjectLanguages(projectId: projectId)
-
-        networkService.sendRequest(request) { (result) in
-             switch result {
+    func getProjectLanguages(_ projectId: String, completion: @escaping @Sendable (Result<[Language], WizError>) -> Void) {
+        send(.getProjectLanguages(projectId: projectId)) { (result) in
+            switch result {
             case .success(let data):
                 if let data = data, let envelope = try? wizDecoder.decode(LanguageEnvelope.self, from: data) {
                     completion(.success(envelope.languages))
@@ -84,10 +81,8 @@ class WizApiService {
         }
     }
 
-    func uploadProjectFile(_ projectId: String, filename: String, fileData: Data, completion: @escaping (Bool, Error?) -> Void) {
-        let request = WizApiRequest.uploadFile(projectId: projectId, fileName: filename, fileData: fileData, contentType: "text/plain")
-
-        networkService.sendRequest(request) { (result) in
+    func uploadProjectFile(_ projectId: String, filename: String, fileData: Data, completion: @escaping @Sendable (Bool, (any Error)?) -> Void) {
+        send(.uploadFile(projectId: projectId, fileName: filename, fileData: fileData, contentType: "text/plain")) { (result) in
             switch result {
             case .success:
                 completion(true, nil)
@@ -95,5 +90,14 @@ class WizApiService {
                 completion(false, error)
             }
         }
+    }
+
+    // Injects the auth header before handing the request to NetworkService.
+    private func send(_ request: WizApiRequest, completion: @escaping CompletionWithResult) {
+        var urlRequest = request.toUrlRequest()
+        if !apiKey.isEmpty {
+            urlRequest.setValue(apiKey, forHTTPHeaderField: "x-api-key")
+        }
+        networkService.sendRequest(urlRequest, completion: completion)
     }
 }

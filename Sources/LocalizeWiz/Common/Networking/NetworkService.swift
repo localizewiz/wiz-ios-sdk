@@ -9,10 +9,12 @@
 import Foundation
 
 
-typealias NetworkCompletionHandler = (_ response: Any?, _ error: WizError?) -> Void
-typealias CompletionWithResult = (_ result: Result<Data?, WizError>) -> Void
+typealias NetworkCompletionHandler = @Sendable (_ response: Any?, _ error: WizError?) -> Void
+typealias CompletionWithResult = @Sendable (_ result: Result<Data?, WizError>) -> Void
 
-class NetworkService: NSObject {
+// Phase 2 will replace this networking layer with a local cache + Google Translate approach.
+// @unchecked Sendable: URLSession is Sendable; NSObject inheritance is conservative.
+final class NetworkService: NSObject, @unchecked Sendable {
 
     private lazy var session: URLSession = {
         let configuration = URLSessionConfiguration.default

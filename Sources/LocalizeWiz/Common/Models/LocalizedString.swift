@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class LocalizedString: Codable {
+public struct LocalizedString: Codable, Sendable {
     
     public var id: String?
     public var name: String
